@@ -12,6 +12,6 @@ nginxProxyManager:
   service:
     type: ClusterIP
     ports:
-      - http: 80
-      - https: 443
-      - management: 81
+      http: "80"
+      https: "443"
+      management: "81"
