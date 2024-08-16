@@ -17,7 +17,7 @@ spec:
       containers:
         - name: cloudflare
           image: "cloudflare/cloudflared"
-          command: [ "tunnel", "--no-autoupdate", "run", "--token", {{ .Values.cloudflare.token }} ]
+          command: [ "tunnel", "--no-autoupdate", "run", "--token", "{{ .Values.cloudflare.token }}" ]
           volumeMounts:
             {{- range .Values.volumeMounts }}
             - name: {{ .name }}
@@ -35,3 +35,4 @@ spec:
             secretName: {{ .secret.secretName }}
           {{- end }}
         {{- end }}
+
