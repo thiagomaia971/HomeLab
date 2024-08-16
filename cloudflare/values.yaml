@@ -20,3 +20,8 @@ appVersion: "2023.5.1"
 
 # Let's look professional with a Cloudflare icon.
 icon: https://developers.cloudflare.com/cloudflare-one/favicon-32x32.png
+
+cloudflare:
+  account: ""
+  tunnelId: ""
+  secret: ""
