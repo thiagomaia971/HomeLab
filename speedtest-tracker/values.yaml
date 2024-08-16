@@ -35,14 +35,14 @@ persistence:
   size: 1Gi
   className: manual
 
-volumes:
-  - name: speedtest-tracker-config
-    persistentVolumeClaim:
-      claimName: speedtest-tracker-pvc
+# volumes:
+#   - name: speedtest-tracker-config
+#     persistentVolumeClaim:
+#       claimName: speedtest-tracker-pvc
 
-volumeMounts:
-  - name: speedtest-tracker-pv
-    mountPath: /mnt/data/speedtest-tracker
+# volumeMounts:
+#   - name: speedtest-tracker-volumeMount
+#     mountPath: /mnt/data/speedtest-tracker
 
 env:
   - name: PUID
