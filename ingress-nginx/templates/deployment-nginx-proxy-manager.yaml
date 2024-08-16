@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy-manager
+  namespace: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.nginxProxyManager.replicaCount }}
+  selector:
+    matchLabels:
+      app: nginx-proxy-manager
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy-manager
+    spec:
+      containers:
+        - name: nginx-proxy-manager
+          image: "{{ .Values.nginxProxyManager.image }}"
+          ports:
+            - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
+            - containerPort: {{ .Values.nginxProxyManager.service.ports.https }}
+            - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}

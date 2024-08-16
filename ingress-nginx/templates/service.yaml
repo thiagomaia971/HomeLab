@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-controller
+  namespace: {{ .Release.Name }}
+spec:
+  type: {{ .Values.controller.service.type }}
+  selector:
+    app: {{ .Release.Name }}
+  ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-proxy-manager-service
+  namespace: {{ .Release.Name }}
+spec:
+  type: {{ .Values.nginxProxyManager.service.type }}
+  selector:
+    app: nginx-proxy-manager
+  ports:
+    - name: http
+      port: {{ .Values.nginxProxyManager.service.ports.http }}
+      targetPort: {{ .Values.nginxProxyManager.service.ports.http }}
+    - name: https
+      port: {{ .Values.nginxProxyManager.service.ports.https }}
+      targetPort: {{ .Values.nginxProxyManager.service.ports.https }}
+    - name: management
+      port: {{ .Values.nginxProxyManager.service.ports.management }}
+      targetPort: {{ .Values.nginxProxyManager.service.ports.management }}
