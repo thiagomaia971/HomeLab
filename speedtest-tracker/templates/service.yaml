@@ -5,10 +5,12 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
+    - name: {{ .Release.Name }}-http
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
       nodePort: {{ .Values.service.nodePort }}
-    - port: {{ .Values.service.httpsPort }}
+    - name: {{ .Release.Name }}-https
+    port: {{ .Values.service.httpsPort }}
       targetPort: {{ .Values.service.httpsPort }}
       nodePort: {{ .Values.service.httpsNodePort }}
   selector:
