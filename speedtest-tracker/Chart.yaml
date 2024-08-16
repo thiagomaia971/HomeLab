@@ -1,0 +1,5 @@
+apiVersion: v2
+name: speedtest-tracker
+description: A Helm chart for Kubernetes to deploy Speedtest Tracker
+version: 0.1.0
+appVersion: "0.20.6"

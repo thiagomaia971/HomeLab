@@ -1,0 +1,78 @@
+replicaCount: 1
+
+image:
+  repository: lscr.io/linuxserver/speedtest-tracker
+  tag: "0.20.6"
+  pullPolicy: IfNotPresent
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 80
+  nodePort: 30001
+  httpsPort: 443
+  httpsNodePort: 30002
+
+ingress:
+  enabled: false
+  name: ""
+  nginxClassName: ""
+  ingressClassName: ""
+  path: /
+  hosts:
+    - host: speed.tmaia.cloud
+      paths:
+        - /
+  tls: []
+
+resources: {}
+  
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  className: local-path
+
+env:
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+  - name: APP_URL
+    value: "https://speed.tmaia.cloud"
+  - name: APP_KEY
+    value: "base64:GLVLJVzzYOqek3q6n7js99hcoQDDfLBR0gsOWdnmkFE="
+  - name: DB_CONNECTION
+    value: "sqlite"
+  - name: SPEEDTEST_SCHEDULE
+    value: "0 * * * *"
+  - name: SPEEDTEST_SERVERS
+    value: ""
+  - name: PRUNE_RESULTS_OLDER_THAN
+    value: ""
+  - name: CHART_DATETIME_FORMAT
+    value: ""
+  - name: DATETIME_FORMAT
+    value: ""
+  - name: APP_TIMEZONE
+    value: "America/Fortaleza"
+  - name: DISPLAY_TIMEZONE
+    value: "America/Fortaleza"
+  - name: DASHBOARD_POLLING
+    value: "10s"
+  - name: RESULTS_POLLING
+    value: "10s"
+
+volumeMounts:
+  - name: config
+    mountPath: /config
+  - name: ssl-keys
+    mountPath: /config/keys
+
+volumes:
+  - name: config
+    persistentVolumeClaim:
+      claimName: speedtest-tracker-pvc
+  - name: ssl-keys
+    secret:
+      secretName: speedtest-tracker-ssl-keys
