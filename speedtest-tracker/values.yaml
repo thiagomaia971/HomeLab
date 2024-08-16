@@ -38,7 +38,7 @@ env:
   - name: PGID
     value: "1000"
   - name: APP_URL
-    value: "https://speed.tmaia.cloud"
+    value: "https://speed-tracker.tmaia.cloud"
   - name: APP_KEY
     value: "base64:GLVLJVzzYOqek3q6n7js99hcoQDDfLBR0gsOWdnmkFE="
   - name: DB_CONNECTION
@@ -63,3 +63,5 @@ env:
     value: "10s"
   - name: AUTH
     value: "false"
+  - name: PUBLIC_DASHBOARD
+    value: "true"
