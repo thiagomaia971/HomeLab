@@ -61,3 +61,5 @@ env:
     value: "10s"
   - name: RESULTS_POLLING
     value: "10s"
+  - name: AUTH
+    value: "false"
