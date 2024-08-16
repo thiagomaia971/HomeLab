@@ -35,6 +35,11 @@ persistence:
   size: 1Gi
   className: manual
 
+volumes:
+  - name: speedtest-tracker-config
+    persistentVolumeClaim:
+      claimName: speedtest-tracker-pvc
+
 env:
   - name: PUID
     value: "1000"
