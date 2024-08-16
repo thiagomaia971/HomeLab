@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: {{ .Release.Name }}-pv
-  namespace: default
+  namespace: {{ .Release.Name }}
 spec:
   capacity:
     storage: {{ .Values.persistence.size }}
