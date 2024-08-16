@@ -33,6 +33,7 @@ spec:
             - name: {{ .name }}
               mountPath: {{ .mountPath }}
             {{- end }}
+          
       volumes:
         {{- range .Values.volumes }}
         - name: {{ .name }}

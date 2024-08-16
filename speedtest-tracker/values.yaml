@@ -12,6 +12,10 @@ service:
   httpsPort: 443
   httpsNodePort: 30003
 
+cloudflare:
+  replicaCount: 1
+  token: "meu_token"
+
 ingress:
   enabled: true
   name: ""

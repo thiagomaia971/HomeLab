@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudflare-deployment
+  labels:
+    app: cloudflare
+spec:
+  replicas: {{ .Values.cloudflare.replicaCount }}
+  selector:
+    matchLabels:
+      app: cloudflare
+  template:
+    metadata:
+      labels:
+        app: cloudflare
+    spec:
+      containers:
+        - name: cloudflare
+          image: "cloudflare/cloudflared"
+          command: [ "tunnel", "--no-autoupdate", "run", "--token", {{ .Values.cloudflare.token }} ]
+          volumeMounts:
+            {{- range .Values.volumeMounts }}
+            - name: {{ .name }}
+              mountPath: {{ .mountPath }}
+            {{- end }}
+          
+      volumes:
+        {{- range .Values.volumes }}
+        - name: {{ .name }}
+          {{- if .persistentVolumeClaim }}
+          persistentVolumeClaim:
+            claimName: {{ .persistentVolumeClaim.claimName }}
+          {{- else if .secret }}
+          secret:
+            secretName: {{ .secret.secretName }}
+          {{- end }}
+        {{- end }}
