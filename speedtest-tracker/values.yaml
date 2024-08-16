@@ -41,7 +41,7 @@ volumes:
       claimName: speedtest-tracker-pvc
 
 volumeMounts:
-  - name: speedtest-tracker-volumeMount
+  - name: speedtest-tracker-pv
     mountPath: /mnt/data/speedtest-tracker
 
 env:
