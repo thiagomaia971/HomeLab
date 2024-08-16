@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Release.Name }}-deployment
+  namespace: {{ .Release.Name }}
   labels:
     app: {{ .Release.Name }}
 spec:
@@ -47,9 +48,9 @@ spec:
           ports:
             - containerPort: 80
           volumeMounts:
-            - mountPath: /config
-              name: config-volume
+            - name: {{ .Release.Name }}-config
+              mountPath: /config
       volumes:
-        - name: config-volume
+        - name: {{ .Release.Name }}-config
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-pvc
