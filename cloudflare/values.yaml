@@ -25,3 +25,6 @@ cloudflare:
   account: ""
   tunnelId: ""
   secret: ""
+
+serviceAccount:
+  annotations: ""
