@@ -62,17 +62,3 @@ env:
     value: "10s"
   - name: RESULTS_POLLING
     value: "10s"
-
-volumeMounts:
-  - name: config
-    mountPath: /config
-  - name: ssl-keys
-    mountPath: /config/keys
-
-volumes:
-  - name: config
-    persistentVolumeClaim:
-      claimName: speedtest-tracker-pvc
-  - name: ssl-keys
-    secret:
-      secretName: speedtest-tracker-ssl-keys
