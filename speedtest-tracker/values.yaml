@@ -30,7 +30,7 @@ persistence:
   enabled: true
   accessMode: ReadWriteOnce
   size: 1Gi
-  className: local-path
+  className: manual
 
 env:
   - name: PUID
