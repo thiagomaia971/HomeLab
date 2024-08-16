@@ -9,9 +9,9 @@ service:
   type: NodePort
   port: 80
   targetPort: 80
-  nodePort: 30001
+  nodePort: 30002
   httpsPort: 443
-  httpsNodePort: 30002
+  httpsNodePort: 30003
 
 ingress:
   enabled: false
