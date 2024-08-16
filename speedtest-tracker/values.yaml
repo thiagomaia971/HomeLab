@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: lscr.io/linuxserver/speedtest-tracker
   tag: "0.20.6"
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 
 service:
   type: NodePort
