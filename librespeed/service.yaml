@@ -4,12 +4,12 @@ metadata:
   name: librespeed
   namespace: librespeed
 spec:
-  type: NodePort # Ou LoadBalancer, dependendo do seu ambiente
+  type: {{ .Values.service.type }}
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
       name: http
-      nodePort: 8085 # Expondo a porta 8085 externamente
+      nodePort: {{ .Values.service.nodePort }}
   selector:
     app: librespeed
