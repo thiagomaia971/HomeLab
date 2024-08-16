@@ -9,8 +9,8 @@ nginxProxyManager:
   replicaCount: 1
   image: "jc21/nginx-proxy-manager:latest"
   service:
-    type: ClusterIP
+    type: NodePort
     ports:
-      - http: 80
-      - https: 443
-      - management: 81
+      http: 80
+      https: 443
+      management: 81
