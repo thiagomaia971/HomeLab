@@ -8,7 +8,7 @@ spec:
     storage: {{ .Values.persistence.size }}
   accessModes:
     - {{ .Values.persistence.accessMode }}
-  storageClassName: {{ .Values.persistence.ClassName }}
+  storageClassName: {{ .Values.persistence.className }}
   hostPath:
     path: /mnt/data/{{ .Release.Name }}
   volumeMode: Filesystem
