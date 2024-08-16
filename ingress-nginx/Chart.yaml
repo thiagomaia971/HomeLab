@@ -1,5 +1,5 @@
 apiVersion: v2
-name: ingress-nginx-copy
-description: A Helm chart for Kubernetes NGINX Ingress Controller
+name: ingress-nginx-proxy
+description: A Helm chart for Kubernetes NGINX Ingress Controller and NGINX Proxy Manager
 version: 1.0.0
 appVersion: "4.10.3"

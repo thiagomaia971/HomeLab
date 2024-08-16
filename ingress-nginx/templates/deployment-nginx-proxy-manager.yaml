@@ -1,3 +1,4 @@
+{{- if .Values.nginxProxyManager.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -20,3 +21,4 @@ spec:
             - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
             - containerPort: {{ .Values.nginxProxyManager.service.ports.https }}
             - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
+{{- end }}

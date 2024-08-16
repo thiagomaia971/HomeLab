@@ -6,11 +6,12 @@ controller:
     default: true
 
 nginxProxyManager:
+  enabled: true
   replicaCount: 1
   image: "jc21/nginx-proxy-manager:latest"
   service:
-    type: NodePort
+    type: ClusterIP
     ports:
-      http: 80
-      https: 443
-      management: 81
+      - http: 80
+      - https: 443
+      - management: 81

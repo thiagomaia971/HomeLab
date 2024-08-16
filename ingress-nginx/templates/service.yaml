@@ -13,6 +13,7 @@ spec:
     - name: https
       port: 443
 ---
+{{- if .Values.nginxProxyManager.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -32,4 +33,5 @@ spec:
     - name: management
       port: {{ .Values.nginxProxyManager.service.ports.management }}
       targetPort: {{ .Values.nginxProxyManager.service.ports.management }}
+{{- end }}
 

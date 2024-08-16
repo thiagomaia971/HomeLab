@@ -1,2 +1,2 @@
 resources:
-  - ingress-nginx/HelmRelease.yaml
+  - templates/all.yaml
