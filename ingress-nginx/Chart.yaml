@@ -1,5 +1,5 @@
 apiVersion: v2
-name: {{ .Release.Name }}
+name: ingress-nginx-copy
 description: A Helm chart for Kubernetes NGINX Ingress Controller
 version: 1.0.0
 appVersion: "4.10.3"
