@@ -15,8 +15,7 @@ service:
 ingress:
   enabled: true
   name: ""
-  nginxClassName: ""
-  ingressClassName: ""
+  className: "nginx"
   path: /
   hosts:
     - host: speed-tracker.tmaia.cloud
