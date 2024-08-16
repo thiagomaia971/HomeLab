@@ -13,13 +13,13 @@ service:
   httpsNodePort: 30003
 
 ingress:
-  enabled: false
+  enabled: true
   name: ""
   nginxClassName: ""
   ingressClassName: ""
   path: /
   hosts:
-    - host: speed.tmaia.cloud
+    - host: speed-tracker.tmaia.cloud
       paths:
         - /
   tls: []
