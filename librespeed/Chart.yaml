@@ -1,0 +1,6 @@
+# Chart.yaml
+apiVersion: v2
+name: librespeed
+description: A Helm chart for deploying LibreSpeed
+version: 0.1.0
+appVersion: "latest"

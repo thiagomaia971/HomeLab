@@ -1,11 +1,11 @@
+# templates/pvc.yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: librespeed-config-pvc
-  namespace: librespeed
+  name: {{ .Release.Name }}-pvc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.persistence.size }}

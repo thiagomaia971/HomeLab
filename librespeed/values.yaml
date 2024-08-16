@@ -1,3 +1,32 @@
+replicaCount: 1
+
+image:
+  repository: lscr.io/linuxserver/librespeed
+  tag: latest
+  pullPolicy: IfNotPresent
+
 service:
   type: NodePort
-  nodePort: 30000  # Valor padrão para o NodePort
+  port: 80
+  nodePort: 30000
+
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+env:
+  PUID: 1000
+  PGID: 1000
+  TZ: Etc/UTC
+  PASSWORD: PASSWORD
+  CUSTOM_RESULTS: "false"
+  DB_TYPE: sqlite
+  DB_NAME: DB_NAME
+  DB_HOSTNAME: DB_HOSTNAME
+  DB_USERNAME: DB_USERNAME
+  DB_PASSWORD: DB_PASSWORD
+  DB_PORT: DB_PORT
+  IPINFO_APIKEY: ACCESS_TOKEN
+
+resources: {}

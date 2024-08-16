@@ -1,54 +1,55 @@
+# templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: librespeed
-  namespace: librespeed
+  name: {{ .Release.Name }}-deployment
   labels:
-    app: librespeed
+    app: {{ .Release.Name }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: librespeed
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: librespeed
+        app: {{ .Release.Name }}
     spec:
       containers:
-        - name: librespeed
-          image: lscr.io/linuxserver/librespeed:latest
-          ports:
-            - containerPort: 80
+        - name: {{ .Release.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: PUID
-              value: "1000"
+              value: "{{ .Values.env.PUID }}"
             - name: PGID
-              value: "1000"
+              value: "{{ .Values.env.PGID }}"
             - name: TZ
-              value: "Etc/UTC"
+              value: "{{ .Values.env.TZ }}"
             - name: PASSWORD
-              value: "PASSWORD"
+              value: "{{ .Values.env.PASSWORD }}"
             - name: CUSTOM_RESULTS
-              value: "false"
+              value: "{{ .Values.env.CUSTOM_RESULTS }}"
             - name: DB_TYPE
-              value: "sqlite"
+              value: "{{ .Values.env.DB_TYPE }}"
             - name: DB_NAME
-              value: "DB_NAME"
+              value: "{{ .Values.env.DB_NAME }}"
             - name: DB_HOSTNAME
-              value: "DB_HOSTNAME"
+              value: "{{ .Values.env.DB_HOSTNAME }}"
             - name: DB_USERNAME
-              value: "DB_USERNAME"
+              value: "{{ .Values.env.DB_USERNAME }}"
             - name: DB_PASSWORD
-              value: "DB_PASSWORD"
+              value: "{{ .Values.env.DB_PASSWORD }}"
             - name: DB_PORT
-              value: "DB_PORT"
+              value: "{{ .Values.env.DB_PORT }}"
             - name: IPINFO_APIKEY
-              value: "ACCESS_TOKEN"
+              value: "{{ .Values.env.IPINFO_APIKEY }}"
+          ports:
+            - containerPort: 80
           volumeMounts:
-            - name: config
-              mountPath: /config
+            - mountPath: /config
+              name: config-volume
       volumes:
-        - name: config
+        - name: config-volume
           persistentVolumeClaim:
-            claimName: librespeed-config-pvc
+            claimName: {{ .Release.Name }}-pvc
