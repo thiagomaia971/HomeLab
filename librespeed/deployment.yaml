@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: librespeed
+  namespace: librespeed
+  labels:
+    app: librespeed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: librespeed
+  template:
+    metadata:
+      labels:
+        app: librespeed
+    spec:
+      containers:
+        - name: librespeed
+          image: lscr.io/linuxserver/librespeed:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: PUID
+              value: "1000"
+            - name: PGID
+              value: "1000"
+            - name: TZ
+              value: "Etc/UTC"
+            - name: PASSWORD
+              value: "PASSWORD"
+            - name: CUSTOM_RESULTS
+              value: "false"
+            - name: DB_TYPE
+              value: "sqlite"
+            - name: DB_NAME
+              value: "DB_NAME"
+            - name: DB_HOSTNAME
+              value: "DB_HOSTNAME"
+            - name: DB_USERNAME
+              value: "DB_USERNAME"
+            - name: DB_PASSWORD
+              value: "DB_PASSWORD"
+            - name: DB_PORT
+              value: "DB_PORT"
+            - name: IPINFO_APIKEY
+              value: "ACCESS_TOKEN"
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: librespeed-config-pvc

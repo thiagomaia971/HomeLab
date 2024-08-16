@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: librespeed
+  namespace: librespeed
+spec:
+  type: NodePort # Ou LoadBalancer, dependendo do seu ambiente
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+      nodePort: 8085 # Expondo a porta 8085 externamente
+  selector:
+    app: librespeed
