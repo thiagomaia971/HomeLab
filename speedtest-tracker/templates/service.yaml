@@ -10,7 +10,7 @@ spec:
       targetPort: {{ .Values.service.port }}
       nodePort: {{ .Values.service.nodePort }}
     - name: {{ .Release.Name }}-https
-    port: {{ .Values.service.httpsPort }}
+      port: {{ .Values.service.httpsPort }}
       targetPort: {{ .Values.service.httpsPort }}
       nodePort: {{ .Values.service.httpsNodePort }}
   selector:
