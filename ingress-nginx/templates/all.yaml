@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+  replicas: {{ .Values.controller.replicaCount }}
+  selector:
+    matchLabels:
+      app: ingress-nginx
+  template:
+    metadata:
+      labels:
+        app: ingress-nginx
+    spec:
+      containers:
+        - name: controller
+          image: "k8s.gcr.io/ingress-nginx/controller:v{{ .Chart.AppVersion }}"
+          ports:
+            - containerPort: 80
+            - containerPort: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+  type: {{ .Values.controller.service.type }}
+  selector:
+    app: ingress-nginx
+  ports:
+    - name: http
+      port: 80
+    - name: https
+      port: 443
+---
+apiVersion: networking.k8s.io/v1
+kind: IngressClass
+metadata:
+  name: nginx
+  annotations:
+    ingressclass.kubernetes.io/is-default-class: "{{ .Values.controller.ingressClassResource.default }}"
+spec:
+  controller: k8s.io/ingress-nginx
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-proxy-manager
+  namespace: ingress-nginx
+spec:
+  replicas: {{ .Values.nginxProxyManager.replicaCount }}
+  selector:
+    matchLabels:
+      app: nginx-proxy-manager
+  template:
+    metadata:
+      labels:
+        app: nginx-proxy-manager
+    spec:
+      containers:
+        - name: nginx-proxy-manager
+          image: "{{ .Values.nginxProxyManager.image }}"
+          ports:
+            - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
+            - containerPort: {{ .Values.nginxProxyManager.service.ports.https }}
+            - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-proxy-manager-service
+  namespace: ingress-nginx
+spec:
+  type: {{ .Values.nginxProxyManager.service.type }}
+  selector:
+    app: nginx-proxy-manager
+  ports:
+    - name: http
+      port: {{ .Values.nginxProxyManager.service.ports.http }}
+      targetPort: {{ .Values.nginxProxyManager.service.ports.http }}
+    - name: https
+      port: {{ .Values.nginxProxyManager.service.ports.https }}
+      targetPort: {{ .Values.nginxProxyManager.service.ports.https }}
+    - name: management
+      port: {{ .Values.nginxProxyManager.service.ports.management }}
+      targetPort: {{ .Values.nginxProxyManager.service.ports.management }}
