@@ -40,6 +40,10 @@ volumes:
     persistentVolumeClaim:
       claimName: speedtest-tracker-pvc
 
+volumeMounts:
+  - name: speedtest-tracker-volumeMount
+    mountPath: /mnt/data/speedtest-tracker
+
 env:
   - name: PUID
     value: "1000"
