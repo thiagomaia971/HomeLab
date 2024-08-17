@@ -19,3 +19,7 @@ spec:
           ports:
             - containerPort: 80
             - containerPort: 443
+          env:
+            {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
