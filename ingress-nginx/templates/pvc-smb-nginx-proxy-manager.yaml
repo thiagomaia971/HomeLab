@@ -11,7 +11,7 @@ spec:
     requests:
       storage: {{ .Values.nginxProxyManager.persistence.size }}
   volumeName: letsencrypt-pv
-  storageClassName: ""
+  storageClassName: local-path
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
