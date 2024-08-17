@@ -12,24 +12,13 @@ service:
   httpsPort: 443
   httpsNodePort: 30003
 
-ingress:
-  enabled: true
-  name: ""
-  className: "nginx"
-  path: /
-  hosts:
-    - host: speed-tracker.tmaia.cloud
-      paths:
-        - /
-  tls: []
-
 resources: {}
   
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
   size: 1Gi
-  className: manual
+  className: local-path
 
 # volumes:
 #   - name: speedtest-tracker-config
