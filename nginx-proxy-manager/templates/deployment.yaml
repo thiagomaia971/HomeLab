@@ -13,15 +13,6 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
-      initContainers:
-        - name: copy-nginx-conf
-          image: busybox
-          command: ['sh', '-c', 'cp -r /etc/nginx/conf.d /mnt/nginx-conf/ && chown -R nginx:nginx /mnt/nginx-conf/']
-          volumeMounts:
-          - name: letsencrypt-storage
-            mountPath: /mnt/nginx-conf
-          - name: letsencrypt-storage
-            mountPath: /etc/nginx/conf.d
       containers:
         - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
@@ -32,8 +23,6 @@ spec:
           volumeMounts:
             - name: letsencrypt-storage
               mountPath: /etc/letsencrypt
-            - name: letsencrypt-storage
-              mountPath: /etc/nginx/conf.d
             - name: {{ .Release.Name }}-storage
               mountPath: /data
       volumes:

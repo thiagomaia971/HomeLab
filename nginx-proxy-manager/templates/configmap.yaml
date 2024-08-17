@@ -39,12 +39,12 @@
 #       }
 #   }
 
-#   server {
-#       listen 80;
-#       server_name 192.168.68.136;
+# #   server {
+# #       listen 80;
+# #       server_name 192.168.68.136;
 
-#       location / {
-#           return 301 https://$host$request_uri;
-#       }
-#   }
+# #       location / {
+# #           return 301 https://$host$request_uri;
+# #       }
+# #   }
 
