@@ -21,4 +21,8 @@ spec:
             - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
             - containerPort: {{ .Values.nginxProxyManager.service.ports.https }}
             - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
+      volumes:
+        - name: letsencrypt
+          hostPath:
+            path: /etc/letsencrypt
 {{- end }}
