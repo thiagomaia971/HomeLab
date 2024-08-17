@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-proxy-manager-ingress
+  namespace: {{ .Release.Name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - host: speed.tmaia.cloud  # Substitua pelo seu domínio ou subdomínio
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: speedtest-tracker-service  # Nome do serviço do nginx-proxy-manager
+                port:
+                  number: 80  # Porta onde o nginx-proxy-manager está exposto
+  # tls:
+  #   - hosts:
+  #       - speed.tmaia.cloud  # Substitua pelo seu domínio ou subdomínio
+  #     secretName: tls-secret  # Nome do segredo TLS (certificado) se estiver usando HTTPS
