@@ -30,6 +30,10 @@ spec:
           volumeMounts:
             - name: letsencrypt-storage
               mountPath: /etc/letsencrypt
+            - name: letsencrypt-storage
+              mountPath: /etc/nginx/conf.d
+            - name: letsencrypt-storage
+              mountPath: /etc/nginx/ssl
             - name: {{ .Release.Name }}-storage
               mountPath: /data
       volumes:
