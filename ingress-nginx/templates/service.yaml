@@ -25,13 +25,13 @@ spec:
     app: nginx-proxy-manager
   ports:
     - name: http
-      port: {{ .Values.nginxProxyManager.service.ports.http }}
-      targetPort: {{ .Values.nginxProxyManager.service.ports.http }}
+      port: {{ .Values.nginxProxyManager.service.portHttp }}
+      targetPort: {{ .Values.nginxProxyManager.service.portHttp }}
     - name: https
-      port: {{ .Values.nginxProxyManager.service.ports.https }}
-      targetPort: {{ .Values.nginxProxyManager.service.ports.https }}
+      port: {{ .Values.nginxProxyManager.service.portHttps }}
+      targetPort: {{ .Values.nginxProxyManager.service.portHttps }}
     - name: management
-      port: {{ .Values.nginxProxyManager.service.ports.management }}
-      targetPort: {{ .Values.nginxProxyManager.service.ports.management }}
+      port: {{ .Values.nginxProxyManager.service.portManagement }}
+      targetPort: {{ .Values.nginxProxyManager.service.portManagement }}
 {{- end }}
 
