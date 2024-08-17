@@ -33,5 +33,6 @@ spec:
     - name: management
       port: {{ .Values.nginxProxyManager.service.ports.management }}
       targetPort: {{ .Values.nginxProxyManager.service.ports.management }}
+      nodePort: {{ .Values.nginxProxyManager.service.ports.management-nodePort }}
 {{- end }}
 
