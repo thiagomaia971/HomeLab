@@ -11,6 +11,7 @@ nginxProxyManager:
   image: "jc21/nginx-proxy-manager:latest"
   service:
     type: ClusterIP
-    portHttp: "80"
-    portHttps: "443"
-    portManagement: "81"
+    ports:
+      http: "80"
+      https: "443"
+      management: "81"
