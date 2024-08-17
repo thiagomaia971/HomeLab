@@ -6,9 +6,9 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   capacity:
-    storage: 1Gi
+    storage: {{ .Values.nginxProxyManager.persistence.size }}
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.nginxProxyManager.persistence.accessMode }}
   hostPath:
     path: /etc/letsencrypt
 {{- end }}

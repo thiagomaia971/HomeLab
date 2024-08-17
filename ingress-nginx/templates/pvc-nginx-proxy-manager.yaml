@@ -6,8 +6,9 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
-    - ReadWriteMany
+    - {{ .Values.nginxProxyManager.persistence.accessMode }}
+  storageClassName: {{ .Values.nginxProxyManager.persistence.className }}
   resources:
     requests:
-      storage: 1Gi
+      storage: {{ .Values.nginxProxyManager.persistence.size }}
 {{- end }}

@@ -21,9 +21,6 @@ spec:
             - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
             - containerPort: {{ .Values.nginxProxyManager.service.ports.https }}
             - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
-      volumeMounts:
-        - name: letsencrypt-storage
-          mountPath: /etc/letsencrypt
       volumes:
         - name: letsencrypt-storage
           persistentVolumeClaim:

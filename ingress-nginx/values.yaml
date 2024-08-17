@@ -15,3 +15,7 @@ nginxProxyManager:
       http: "80"
       https: "443"
       management: "81"
+  persistence:
+    accessMode: ReadWriteOnce
+    size: 1Gi
+    className: manual
