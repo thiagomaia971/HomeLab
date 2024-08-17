@@ -13,6 +13,14 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
+      strategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxSurge: 1
+          maxUnavailable: 1
+      syncPolicy:
+        automated:
+          prune: true
       containers:
         - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
