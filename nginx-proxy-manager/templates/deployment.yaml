@@ -13,13 +13,13 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
-      initContainers:
-      - name: fix-permissions
-        image: busybox
-        command: ['sh', '-c', 'chown -R 1000:1000 /etc && chmod -R 755 /etc']
-        volumeMounts:
-        - name: letsencrypt-storage
-          mountPath: /etc
+      # initContainers:
+      # - name: fix-permissions
+      #   image: busybox
+      #   command: ['sh', '-c', 'chown -R 1000:1000 /etc && chmod -R 755 /etc']
+      #   volumeMounts:
+      #   - name: letsencrypt-storage
+      #     mountPath: /etc
       containers:
         - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
@@ -29,7 +29,7 @@ spec:
             - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
           volumeMounts:
             - name: letsencrypt-storage
-              mountPath: /etc
+              mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
       volumes:
