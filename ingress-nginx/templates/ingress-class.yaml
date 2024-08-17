@@ -1,9 +1,9 @@
 
-apiVersion: networking.k8s.io/v1
-kind: IngressClass
-metadata:
-  name: nginx
-  annotations:
-    ingressclass.kubernetes.io/is-default-class: "{{ .Values.controller.ingressClassResource.default }}"
-spec:
-  controller: k8s.io/{{ .Release.Name }}
+# apiVersion: networking.k8s.io/v1
+# kind: IngressClass
+# metadata:
+#   name: nginx
+#   annotations:
+#     ingressclass.kubernetes.io/is-default-class: "{{ .Values.controller.ingressClassResource.default }}"
+# spec:
+#   controller: k8s.io/{{ .Release.Name }}

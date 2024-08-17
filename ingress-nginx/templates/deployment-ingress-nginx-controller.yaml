@@ -1,25 +1,25 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Release.Name }}-controller
-  namespace: {{ .Release.Name }}
-spec:
-  replicas: {{ .Values.controller.replicaCount }}
-  selector:
-    matchLabels:
-      app: {{ .Release.Name }}
-  template:
-    metadata:
-      labels:
-        app: {{ .Release.Name }}
-    spec:
-      containers:
-        - name: controller
-          image: "k8s.gcr.io/ingress-nginx/controller:v{{ .Chart.AppVersion }}"
-          ports:
-            - containerPort: 80
-            - containerPort: 443
-          env:
-            {{- with .Values.env }}
-            {{- toYaml . | nindent 12 }}
-            {{- end }}
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: {{ .Release.Name }}-controller
+#   namespace: {{ .Release.Name }}
+# spec:
+#   replicas: {{ .Values.controller.replicaCount }}
+#   selector:
+#     matchLabels:
+#       app: {{ .Release.Name }}
+#   template:
+#     metadata:
+#       labels:
+#         app: {{ .Release.Name }}
+#     spec:
+#       containers:
+#         - name: controller
+#           image: "k8s.gcr.io/ingress-nginx/controller:v{{ .Chart.AppVersion }}"
+#           ports:
+#             - containerPort: 80
+#             - containerPort: 443
+#           env:
+#             {{- with .Values.env }}
+#             {{- toYaml . | nindent 12 }}
+#             {{- end }}
