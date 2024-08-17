@@ -1,10 +1,3 @@
-controller:
-  replicaCount: 1
-  service:
-    type: NodePort
-  ingressClassResource:
-    default: true
-
 nginxProxyManager:
   enabled: true
   replicaCount: 3
@@ -16,20 +9,7 @@ nginxProxyManager:
       https: "443"
       management: "81"
       managementNodePort: "30006"
-  smp:
-    username: ""
-    password: ""
   persistence:
     accessMode: ReadWriteOnce
     size: 1Gi
     className: manual
-
-env:
-  - name: POD_NAME
-    valueFrom:
-      fieldRef:
-        fieldPath: metadata.name
-  - name: POD_NAMESPACE
-    valueFrom:
-      fieldRef:
-        fieldPath: metadata.namespace
