@@ -25,6 +25,9 @@ spec:
               mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
+            - name: {{ .Release.Name }}-default-conf
+              mountPath: /etc/nginx/conf.d/default.conf
+              subPath: default.conf
       volumes:
         - name: letsencrypt-storage
           persistentVolumeClaim:
@@ -32,3 +35,6 @@ spec:
         - name: {{ .Release.Name }}-storage
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-pvc
+        - name: {{ .Release.Name }}-default-conf
+          configMap:
+            name: {{ .Release.Name }}-configmap
