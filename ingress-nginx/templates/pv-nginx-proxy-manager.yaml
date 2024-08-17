@@ -11,4 +11,6 @@ spec:
     - {{ .Values.nginxProxyManager.persistence.accessMode }}
   hostPath:
     path: /etc/letsencrypt
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
 {{- end }}
