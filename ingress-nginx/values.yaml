@@ -15,7 +15,7 @@ nginxProxyManager:
       http: "80"
       https: "443"
       management: "81"
-      management-nodePort: "30006"
+      managementNodePort: "30006"
   persistence:
     accessMode: ReadWriteOnce
     size: 1Gi
