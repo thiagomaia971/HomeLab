@@ -25,5 +25,5 @@ spec:
     requests:
       storage: {{ .Values.nginxProxyManager.persistence.size }}
   volumeName: nginx-proxy-manager-pv
-  storageClassName: ""
+  storageClassName: local-path
 {{- end }}
