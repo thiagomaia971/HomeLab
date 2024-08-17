@@ -1,0 +1,13 @@
+{{- if .Values.nginxProxyManager.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: letsencrypt-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /etc/letsencrypt
+{{- end }}
