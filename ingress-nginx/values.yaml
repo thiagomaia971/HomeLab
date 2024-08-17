@@ -7,7 +7,7 @@ controller:
 
 nginxProxyManager:
   enabled: true
-  replicaCount: 1
+  replicaCount: 3
   image: "jc21/nginx-proxy-manager:latest"
   service:
     type: NodePort
