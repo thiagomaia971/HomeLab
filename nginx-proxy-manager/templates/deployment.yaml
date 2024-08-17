@@ -21,6 +21,15 @@ spec:
       syncPolicy:
         automated:
           prune: true
+      initContainers:
+        - name: move-config
+          image: busybox
+          command: ['sh', '-c', 'cp /data/nginx/conf.d/override-config.conf /etc/nginx/conf.d/ && chmod 644 /etc/nginx/conf.d/override-config.conf']
+          volumeMounts:
+            - name: {{ .Release.Name }}-override-conf
+              mountPath: /data/nginx/conf.d
+            - name: {{ .Release.Name }}-default-conf
+              mountPath: /etc/nginx/conf.d
       containers:
         - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
@@ -33,10 +42,8 @@ spec:
               mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
-            - name: {{ .Release.Name }}-default-conf
-              mountPath: /etc/nginx/conf.d/override-config.conf
-              subPath: override-config.conf
-              readOnly: false
+            - name: {{ .Release.Name }}-override-conf
+              mountPath: /data/nginx/conf.d/override-config.conf
       volumes:
         - name: letsencrypt-storage
           persistentVolumeClaim:
@@ -44,6 +51,8 @@ spec:
         - name: {{ .Release.Name }}-storage
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-pvc
-        - name: {{ .Release.Name }}-default-conf
+        - name: {{ .Release.Name }}-override-conf
           configMap:
             name: {{ .Release.Name }}-configmap
+        - name: {{ .Release.Name }}-default-conf
+          emptyDir: {}
