@@ -9,6 +9,7 @@ spec:
     storage: {{ .Values.nginxProxyManager.persistence.size }}
   accessModes:
     - {{ .Values.nginxProxyManager.persistence.accessMode }}
+  storageClassName: {{ .Values.nginxProxyManager.persistence.className }}
   hostPath:
     path: /etc/letsencrypt
   volumeMode: Filesystem

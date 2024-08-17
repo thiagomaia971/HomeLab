@@ -7,8 +7,8 @@ metadata:
 spec:
   accessModes:
     - {{ .Values.nginxProxyManager.persistence.accessMode }}
-  storageClassName: {{ .Values.nginxProxyManager.persistence.className }}
   resources:
     requests:
       storage: {{ .Values.nginxProxyManager.persistence.size }}
+  storageClassName: {{ .Values.nginxProxyManager.persistence.className }}
 {{- end }}
