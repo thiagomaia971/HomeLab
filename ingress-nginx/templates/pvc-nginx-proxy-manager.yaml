@@ -1,13 +1,13 @@
 {{- if .Values.nginxProxyManager.enabled }}
 apiVersion: v1
-kind: PersistentVolume
+kind: PersistentVolumeClaim
 metadata:
-  name: letsencrypt-pv
+  name: letsencrypt-pvc
+  namespace: {{ .Release.Name }}
 spec:
-  capacity:
-    storage: 1Gi
   accessModes:
     - ReadWriteMany
-  hostPath:
-    path: /etc/letsencrypt
+  resources:
+    requests:
+      storage: 1Gi
 {{- end }}
