@@ -12,4 +12,18 @@ spec:
       storage: {{ .Values.nginxProxyManager.persistence.size }}
   volumeName: letsencrypt-pv
   storageClassName: ""
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-proxy-manager-pvc
+  namespace: {{ .Release.Name }}
+spec:
+  accessModes:
+    - {{ .Values.nginxProxyManager.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.nginxProxyManager.persistence.size }}
+  volumeName: nginx-proxy-manager-pv
+  storageClassName: ""
 {{- end }}
