@@ -1,21 +1,20 @@
-{{- if .Values.nginxProxyManager.enabled }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-proxy-manager
+  name: {{ .Release.Name }}
   namespace: {{ .Release.Name }}
 spec:
   replicas: {{ .Values.nginxProxyManager.replicaCount }}
   selector:
     matchLabels:
-      app: nginx-proxy-manager
+      app: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: nginx-proxy-manager
+        app: {{ .Release.Name }}
     spec:
       containers:
-        - name: nginx-proxy-manager
+        - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
           ports:
             - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
@@ -24,13 +23,12 @@ spec:
           volumeMounts:
             - name: letsencrypt-storage
               mountPath: /etc/letsencrypt
-            - name: nginx-proxy-manager-storage
+            - name: {{ .Release.Name }}-storage
               mountPath: /data
       volumes:
         - name: letsencrypt-storage
           persistentVolumeClaim:
             claimName: letsencrypt-pvc
-        - name: nginx-proxy-manager-storage
+        - name: {{ .Release.Name }}-storage
           persistentVolumeClaim:
-            claimName: nginx-proxy-manager-pvc
-{{- end }}
+            claimName: {{ .Release.Name }}-pvc

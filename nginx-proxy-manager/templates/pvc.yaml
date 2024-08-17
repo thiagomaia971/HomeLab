@@ -1,4 +1,3 @@
-{{- if .Values.nginxProxyManager.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -16,7 +15,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nginx-proxy-manager-pvc
+  name: {{ .Release.Name }}-pvc
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
@@ -24,6 +23,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.nginxProxyManager.persistence.size }}
-  volumeName: nginx-proxy-manager-pv
+  volumeName: {{ .Release.Name }}-pv
   storageClassName: local-path
-{{- end }}

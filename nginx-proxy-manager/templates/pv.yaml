@@ -1,4 +1,3 @@
-{{- if .Values.nginxProxyManager.enabled }}
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -12,12 +11,12 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-path
   hostPath:
-    path: /mnt/data/nginx-proxy-manager
+    path: /mnt/data/{{ .Release.Name }}
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nginx-proxy-manager-pv
+  name: {{ .Release.Name }}-pv
   namespace: {{ .Release.Name }}
 spec:
   capacity:
@@ -27,5 +26,4 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-path
   hostPath:
-    path: /mnt/data/nginx-proxy-manager
-{{- end }}
+    path: /mnt/data/{{ .Release.Name }}
