@@ -9,6 +9,6 @@ nginxProxyManager:
       management: "81"
       managementNodePort: "30006"
   persistence:
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     size: 1Gi
     className: manual
