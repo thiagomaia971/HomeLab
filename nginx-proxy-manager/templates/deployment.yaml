@@ -36,6 +36,7 @@ spec:
             - name: {{ .Release.Name }}-default-conf
               mountPath: /etc/nginx/conf.d/override-config.conf
               subPath: override-config.conf
+              readOnly: false
       volumes:
         - name: letsencrypt-storage
           persistentVolumeClaim:
