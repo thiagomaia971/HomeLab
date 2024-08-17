@@ -29,19 +29,10 @@ spec:
               value: {{ .value | quote }}
             {{- end }}
           volumeMounts:
-            {{- range .Values.volumeMounts }}
-            - name: {{ .name }}
-              mountPath: {{ .mountPath }}
-            {{- end }}
+            - name: {{ .Release.Name }}-volumeMount
+              mountPath: /mnt/data/{{ .Release.Name }}
           
       volumes:
-        {{- range .Values.volumes }}
-        - name: {{ .name }}
-          {{- if .persistentVolumeClaim }}
+        - name: {{ .Release.Name }}-volumeMount
           persistentVolumeClaim:
-            claimName: {{ .persistentVolumeClaim.claimName }}
-          {{- else if .secret }}
-          secret:
-            secretName: {{ .secret.secretName }}
-          {{- end }}
-        {{- end }}
+            claimName: {{ .Release.Name }}-pvc
