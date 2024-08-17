@@ -16,10 +16,14 @@ nginxProxyManager:
       https: "443"
       management: "81"
       managementNodePort: "30006"
+  smp:
+    username: ""
+    password: ""
   persistence:
     accessMode: ReadWriteOnce
     size: 1Gi
     className: manual
+
 
 env:
   - name: POD_NAME
