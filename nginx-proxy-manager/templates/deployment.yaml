@@ -22,6 +22,8 @@ spec:
             - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
           volumeMounts:
             - name: letsencrypt-storage
+              mountPath: /etc/nginx
+            - name: letsencrypt-storage
               mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
