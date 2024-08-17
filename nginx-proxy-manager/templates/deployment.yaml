@@ -24,6 +24,8 @@ spec:
             - name: letsencrypt-storage
               mountPath: /etc/nginx
             - name: letsencrypt-storage
+              mountPath: /etc/nginx/conf.d
+            - name: letsencrypt-storage
               mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
