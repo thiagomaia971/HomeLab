@@ -1,0 +1,26 @@
+{{- if .Values.nginxProxyManager.enabled }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: letsencrypt-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.nginxProxyManager.persistence.size }}
+  accessModes:
+    - {{ .Values.nginxProxyManager.persistence.accessMode }}
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - dir_mode=0777
+    - file_mode=0777
+    - vers=3.0
+  csi:
+    driver: smb.csi.k8s.io
+    readOnly: false
+    volumeHandle: "projects/{project_id}/zones/{zone_name}/disks/{disk_name}"
+    volumeAttributes:
+      source: "//192.168.68.132/data"
+    nodeStageSecretRef:
+      name: secret-cdisvc
+      namespace: cdi
+{{- end }}

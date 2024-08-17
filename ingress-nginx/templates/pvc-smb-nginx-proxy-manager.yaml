@@ -1,0 +1,15 @@
+{{- if .Values.nginxProxyManager.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: letsencrypt-pvc
+  namespace: {{ .Release.Name }}
+spec:
+  accessModes:
+    - {{ .Values.nginxProxyManager.persistence.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.nginxProxyManager.persistence.size }}
+  volumeName: letsencrypt-pv
+  storageClassName: ""
+{{- end }}
