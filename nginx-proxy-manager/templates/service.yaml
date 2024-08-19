@@ -9,12 +9,14 @@ spec:
     app: {{ .Release.Name }}
   ports:
     - name: http
-      port: {{ .Values.nginxProxyManager.service.ports.http }}
-      targetPort: {{ .Values.nginxProxyManager.service.ports.http }}
+      port: 80
+      targetPort: 80
+      nodePort: {{ .Values.nginxProxyManager.service.ports.http }}
     - name: https
-      port: {{ .Values.nginxProxyManager.service.ports.https }}
-      targetPort: {{ .Values.nginxProxyManager.service.ports.https }}
+      port: 443
+      targetPort: 443
+      nodePort: {{ .Values.nginxProxyManager.service.ports.https }}
     - name: management
-      port: {{ .Values.nginxProxyManager.service.ports.management }}
-      targetPort: {{ .Values.nginxProxyManager.service.ports.management }}
-      nodePort: {{ .Values.nginxProxyManager.service.ports.managementNodePort }}
+      port: 81
+      targetPort: 81
+      nodePort: {{ .Values.nginxProxyManager.service.ports.management }}
