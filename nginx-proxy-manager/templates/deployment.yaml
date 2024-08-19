@@ -17,9 +17,12 @@ spec:
         - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
           ports:
-            - containerPort: {{ .Values.nginxProxyManager.service.ports.http }}
-            - containerPort: {{ .Values.nginxProxyManager.service.ports.https }}
-            - containerPort: {{ .Values.nginxProxyManager.service.ports.management }}
+            - port: 80
+              targetPort: 80
+            - port: 443
+              targetPort: 443
+            - port: 81
+              targetPort: 81
           volumeMounts:
             - name: {{ .Release.Name }}-storage
               mountPath: /etc/letsencrypt
