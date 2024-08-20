@@ -6,8 +6,8 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: 80
-      nodePort: {{ .Values.service.nodePort | default 30000 }}
+    - port: 80
+      targetPort: 85
+      nodePort: 80
   selector:
     app: {{ .Release.Name }}
