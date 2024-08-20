@@ -3,22 +3,17 @@ kind: Ingress
 metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.annotations.rewriteTarget }}
+    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName: nginx
   rules:
-  {{- $root := . }}  # Salva o contexto global em $root
-  {{- range .Values.ingress.hosts }}
-  - host: {{ .host }}
+  - host: speed-internal.tmaia.cloud
     http:
       paths:
-      {{- range .paths }}
-      - path: {{ .path }}
-        pathType: {{ .pathType }}
+      - path: /
+        pathType: Prefix
         backend:
           service:
             name: {{ $root.Release.Name }}-service
             port:
-              number: {{ .port }}
-      {{- end }}
-  {{- end }}
+              number: 30005

@@ -32,8 +32,6 @@ env:
 
 ingress:
   enabled: true
-  annotations:
-    rewriteTarget: /
   hosts:
     - host: speed-internal.tmaia.cloud
       paths:
