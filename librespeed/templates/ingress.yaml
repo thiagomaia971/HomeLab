@@ -5,6 +5,7 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.annotations.rewriteTarget }}
 spec:
+  ingressClassName: nginx
   rules:
   {{- $root := . }}  # Salva o contexto global em $root
   {{- range .Values.ingress.hosts }}
