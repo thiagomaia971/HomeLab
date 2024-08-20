@@ -39,6 +39,7 @@ ingress:
       paths:
         - path: /
           pathType: Prefix
+          port: 30005
   tls: []
 
 resources: {}
