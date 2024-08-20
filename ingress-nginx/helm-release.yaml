@@ -2,20 +2,20 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ingress-nginx
-  namespace: {{ .Values.controller.argocdNamespace }}
+  namespace: argocd  # Namespace onde o ArgoCD está rodando
 spec:
-  project: {{ .Values.controller.project }}
+  project: home-lab
   source:
     repoURL: https://kubernetes.github.io/ingress-nginx
     chart: ingress-nginx
-    targetRevision: {{ .Values.controller.version }}
+    targetRevision: 4.10.1  # Versão específica do Helm Chart
     path: argocd/ingress-nginx
     helm:
       valueFiles:
         - values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .Release.Name }}
+    namespace: ingress-nginx  # Namespace onde o Ingress NGINX será instalado
   syncPolicy:
     automated:
       prune: true
