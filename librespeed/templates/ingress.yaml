@@ -16,4 +16,4 @@ spec:
           service:
             name: {{ .Release.Name }}-service
             port:
-              number: 30005
+              number: 85
