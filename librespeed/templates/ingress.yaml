@@ -12,13 +12,13 @@ spec:
     - host: {{ .host }}
       http:
         paths:
-        {{- range .paths }}
-        - path: {{ .path }}
-          pathType: {{ .pathType }}
-          backend:
-            service:
-              name: {{ $root.Release.Name }}-service
-              port:
-                number: {{ .port }}
-        {{- end }}
+          {{- range .paths }}
+          - path: {{ .path }}
+            pathType: {{ .pathType }}
+            backend:
+              service:
+                name: {{ $root.Release.Name }}-service
+                port:
+                  number: {{ .port }}
+          {{- end }}
     {{- end }}
