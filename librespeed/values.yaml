@@ -30,14 +30,5 @@ env:
   DB_PORT: DB_PORT
   IPINFO_APIKEY: ACCESS_TOKEN
 
-ingress:
-  enabled: true
-  hosts:
-    - host: speed-internal.tmaia.cloud
-      paths:
-        - path: /
-          pathType: Prefix
-          port: 30005
-  tls: []
 
 resources: {}
