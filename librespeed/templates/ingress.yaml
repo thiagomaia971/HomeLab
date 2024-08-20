@@ -16,7 +16,7 @@ spec:
         pathType: {{ .pathType }}
         backend:
           service:
-            name: {{ $root.Name }}-service
+            name: {{ $root.Release.Name }}-service
             port:
               number: 80
       {{- end }}
