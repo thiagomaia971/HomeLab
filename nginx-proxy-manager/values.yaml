@@ -1,7 +1,6 @@
 nginxProxyManager:
   replicaCount: 3
   image: "jc21/nginx-proxy-manager:latest"
-  SSL_ACTIVE: "true"
   service:
     type: NodePort
     ports:
