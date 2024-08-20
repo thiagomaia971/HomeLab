@@ -20,13 +20,3 @@ spec:
               number: 80
       {{- end }}
   {{- end }}
-  # {{- if .Values.ingress.tls }}
-  # tls:
-  # {{- if .Values.ingress.tls }}
-  #   - hosts:
-  #     {{- range .Values.ingress.tls }}
-  #       - {{ .hosts }}
-  #     secretName: {{ .secretName }}
-      
-  #     {{- end }}
-  # {{- end }}
