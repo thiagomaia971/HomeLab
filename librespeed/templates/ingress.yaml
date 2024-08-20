@@ -19,6 +19,6 @@ spec:
           service:
             name: {{ $root.Release.Name }}-service
             port:
-              number: 80
+              number: 30005
       {{- end }}
   {{- end }}
