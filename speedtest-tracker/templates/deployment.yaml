@@ -30,7 +30,7 @@ spec:
             {{- end }}
           volumeMounts:
             - name: {{ .Release.Name }}-storage
-              mountPath: /mnt/data/{{ .Release.Name }}
+              mountPath: /config
           
       volumes:
         - name: {{ .Release.Name }}-storage
