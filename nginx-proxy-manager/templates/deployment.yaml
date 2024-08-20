@@ -22,7 +22,11 @@ spec:
             - containerPort: 81
           env:
             - name: SSL_ACTIVE
-              value: "true"
+              value: "{{ .Values.nginxProxyManager.env.SSL_ACTIVE }}"
+            - name: LETSENCRYPT_DOMAIN
+              value: "{{ .Values.nginxProxyManager.env.LETSENCRYPT_DOMAIN }}"
+            - name: LETSENCRYPT_EMAIL
+              value: "{{ .Values.nginxProxyManager.env.LETSENCRYPT_EMAIL }}"
           volumeMounts:
             - name: {{ .Release.Name }}-storage
               mountPath: /etc/letsencrypt
