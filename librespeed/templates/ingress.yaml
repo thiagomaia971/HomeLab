@@ -1,18 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: librespeed-ingress
+  name: {{ .Release.Name }}-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: speed-internal.tmaia.cloud  # Substitua por seu domínio
+  - host: {{ .Values.ingress.hosts[0].host }}
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - path: {{ .Values.ingress.hosts[0].paths[0].path }}
+        pathType: {{ .Values.ingress.hosts[0].paths[0].pathType }}
         backend:
           service:
             name: {{ .Release.Name }}-service
             port:
               number: 80
+  tls:
+    {{- toYaml .Values.ingress.tls | nindent 4 }}
