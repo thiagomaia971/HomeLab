@@ -6,6 +6,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: {{ .Values.ingress.annotations.rewriteTarget }}
 spec:
   rules:
+  {{- $root := . }}  # Salva o contexto global em $root
   {{- range .Values.ingress.hosts }}
   - host: {{ .host }}
     http:
@@ -15,7 +16,7 @@ spec:
         pathType: {{ .pathType }}
         backend:
           service:
-            name: {{ .Release.Name }}-service
+            name: {{ $root.Name }}-service
             port:
               number: 80
       {{- end }}
