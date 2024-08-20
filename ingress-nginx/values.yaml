@@ -1,0 +1,19 @@
+controller:
+  replicaCount: 2  # Número de réplicas do Ingress Controller
+  argocdNamespace: argocd
+  project: home-lab
+  version: 4.10.1
+  service:
+    type: NodePort  # Tipo de Service (LoadBalancer ou NodePort)
+  ingressClassResource:
+    name: nginx
+    default: true
+  metrics:
+    enabled: true  # Habilitar métricas
+  admissionWebhooks:
+    enabled: true  # Habilitar webhooks de admissão
+  extraArgs:
+    enable-ssl-passthrough: ""  # Habilitar SSL passthrough
+
+defaultBackend:
+  enabled: true  # Habilitar backend padrão para retornar 404 em caminhos não configurados
