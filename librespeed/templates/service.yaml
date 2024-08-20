@@ -8,6 +8,6 @@ spec:
   ports:
     - port: 80
       targetPort: 85
-      nodePort: 80
+      nodePort: {{ .Values.service.nodePort | default 30000 }}
   selector:
     app: {{ .Release.Name }}
