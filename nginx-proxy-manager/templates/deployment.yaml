@@ -20,6 +20,9 @@ spec:
             - containerPort: 80
             - containerPort: 443
             - containerPort: 81
+          env:
+            - name: SSL_ACTIVE
+              value: {{ .Values.nginxProxyManager.SSL_ACTIVE }}
           volumeMounts:
             - name: {{ .Release.Name }}-storage
               mountPath: /etc/letsencrypt
