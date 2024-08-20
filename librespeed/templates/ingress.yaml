@@ -13,6 +13,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{ include "librespeed.fullname" . }}
+            name: {{ include "librespeed.name" . }}
             port:
               number: 80
