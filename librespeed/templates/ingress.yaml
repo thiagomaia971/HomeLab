@@ -4,8 +4,14 @@ metadata:
   name: {{ .Release.Name }}-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: "letsencrypt-staging"
+    kubernetes.io/ingress.class: "nginx"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - speed-internal.tmaia.cloud
+    secretName: {{ .Release.Name }}-tls
   rules:
   - host: speed-internal.tmaia.cloud
     http:
