@@ -10,7 +10,7 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - speed-internal.tmaia.cloud
+    - speed.tmaia.cloud
     secretName: {{ .Release.Name }}-tls
   rules:
   - host: speed.tmaia.cloud
