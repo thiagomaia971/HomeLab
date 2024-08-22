@@ -11,10 +11,10 @@ spec:
   ingressClassName: nginx
   tls:
   - hosts:
-    - speed-internal.tmaia.cloud
+    - k8s-portainer.tmaia.cloud
     secretName: {{ .Release.Name }}-tls
   rules:
-  - host: speed-internal.tmaia.cloud
+  - host: k8s-portainer.tmaia.cloud
     http:
       paths:
       - path: /

@@ -1,8 +1,8 @@
-# templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Release.Name }}-service
+  namespace: {{ .Release.Name }}
 spec:
   type: {{ .Values.service.type }}
   ports:

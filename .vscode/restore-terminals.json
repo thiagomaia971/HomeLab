@@ -1,0 +1,26 @@
+{
+  "artificialDelayMilliseconds": 700,
+  "keepExistingTerminalsOpen": false,
+  "runOnStartup": true,
+  "terminals": [
+    {
+      "splitTerminals": [
+        {
+          "name": "git",
+          "commands": [""]
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "k8s",
+          "commands": [
+            "ssh root@192.168.68.136"
+          ],
+          "shouldRunCommands": false
+        }
+      ]
+    }
+  ]
+}

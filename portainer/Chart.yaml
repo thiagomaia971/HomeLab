@@ -1,0 +1,6 @@
+# Chart.yaml
+apiVersion: v2
+name: portainer
+description: A Helm chart for deploying Portainer
+version: 0.1.0
+appVersion: "latest"
