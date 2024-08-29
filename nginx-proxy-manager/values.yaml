@@ -14,4 +14,4 @@ nginxProxyManager:
   persistence:
     accessMode: ReadWriteMany
     size: 1Gi
-    className: manual
+    className: local-storage

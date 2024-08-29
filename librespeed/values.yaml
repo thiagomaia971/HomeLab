@@ -14,7 +14,7 @@ persistence:
   enabled: true
   accessMode: ReadWriteOnce
   size: 1Gi
-  className: manual
+  className: local-storage
 
 env:
   PUID: 1000

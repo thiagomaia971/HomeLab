@@ -1,7 +1,7 @@
 Para excluir todos os dados dentro de um Persistent Volume (PV) no Kubernetes, você pode seguir um dos métodos abaixo:
 
 Método 1: Excluir os Dados Dentro do Pod
-Se você ainda tem um pod ativo que monta o PV, você pode se conectar ao pod e excluir os dados manualmente.
+Se você ainda tem um pod ativo que monta o PV, você pode se conectar ao pod e excluir os dados local-storagemente.
 
 Conectar ao Pod:
 
