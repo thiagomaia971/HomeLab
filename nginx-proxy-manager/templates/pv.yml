@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  storageClassName: {{ .Values.persistence.className }}
+  hostPath:
+    path: /mnt/data/{{ .Release.Name }}
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain

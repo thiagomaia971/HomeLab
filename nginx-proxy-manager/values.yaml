@@ -1,0 +1,17 @@
+nginxProxyManager:
+  replicaCount: 3
+  image: "jc21/nginx-proxy-manager:latest"
+  env:
+    SSL_ACTIVE: true
+    LETSENCRYPT_DOMAIN: tmaia.cloud
+    LETSENCRYPT_EMAIL: thiago.maia971@gmail.com
+  service:
+    type: NodePort
+    ports:
+      http: "80000"
+      https: "44300"
+      management: "80000"
+  persistence:
+    accessMode: ReadWriteMany
+    size: 1Gi
+    className: manual

@@ -16,7 +16,7 @@
         {
           "name": "k8s",
           "commands": [
-            "ssh root@192.168.68.136"
+            "ssh root@192.168.18.240"
           ],
           "shouldRunCommands": false
         }
@@ -24,3 +24,5 @@
     }
   ]
 }
+kubeadm join k8scluster:6443 --token uz4cfx.whx703zqcn4u27a2 \
+        --discovery-token-ca-cert-hash sha256:a9cdf2f856de57a43ba957d3055542a01fb3b5eea5642c4d1addce912fde00a7
