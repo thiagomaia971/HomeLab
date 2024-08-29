@@ -8,9 +8,9 @@ nginxProxyManager:
   service:
     type: NodePort
     ports:
-      http: "80000"
-      https: "44300"
-      management: "80000"
+      http: "30080"
+      https: "30443"
+      management: "30000"
   persistence:
     accessMode: ReadWriteMany
     size: 1Gi
