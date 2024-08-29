@@ -10,4 +10,4 @@ spec:
     requests:
       storage: {{ .Values.nginxProxyManager.persistence.size }}
   volumeName: {{ .Release.Name }}-pv
-  storageClassName: local-path
+  storageClassName: {{ .Values.nginxProxyManager.persistence.className }}
