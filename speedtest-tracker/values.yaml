@@ -8,9 +8,9 @@ image:
 service:
   type: NodePort
   port: 80
-  nodePort: 30002
+  nodePort: 30005
   httpsPort: 443
-  httpsNodePort: 30003
+  httpsNodePort: 30006
 
 ingress:
   enabled: false
