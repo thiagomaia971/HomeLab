@@ -12,13 +12,16 @@ service:
   httpsPort: 443
   httpsNodePort: 30003
 
+ingress:
+  enabled: false
+
 resources: {}
   
 persistence:
   enabled: true
   accessMode: ReadWriteOnce
   size: 1Gi
-  className: local-path
+  className: local-storage
 
 env:
   - name: PUID

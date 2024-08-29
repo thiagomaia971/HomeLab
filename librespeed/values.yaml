@@ -16,6 +16,9 @@ persistence:
   size: 1Gi
   className: local-storage
 
+ingress:
+  enabled: false
+
 env:
   PUID: 1000
   PGID: 1000
