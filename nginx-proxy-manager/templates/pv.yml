@@ -5,10 +5,10 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   capacity:
-    storage: {{ .Values.persistence.size }}
+    storage: {{ .Values.nginxProxyManager.persistence.size }}
   accessModes:
-    - {{ .Values.persistence.accessMode }}
-  storageClassName: {{ .Values.persistence.className }}
+    - {{ .Values.nginxProxyManager.persistence.accessMode }}
+  storageClassName: {{ .Values.nginxProxyManager.persistence.className }}
   hostPath:
     path: /mnt/data/{{ .Release.Name }}
   volumeMode: Filesystem
