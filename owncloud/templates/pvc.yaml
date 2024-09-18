@@ -3,6 +3,7 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: {{ include "owncloud.fullname" . }}
+  namespace: {{ .Release.Name }}
 spec:
   accessModes:
     - ReadWriteOnce
@@ -18,11 +19,12 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ include "owncloud.fullname" . }}
+  namespace: {{ .Release.Name }}
 spec:
   accessModes:
     - {{ .Values.persistence.owncloud.accessMode }}
   resources:
     requests:
       storage: {{ .Values.persistence.owncloud.size }}
-  storageClassName: {{ .Values.persistence.owncloud.className }}
+  volumeName: {{ .Release.Name }}-pv
 {{- end -}}

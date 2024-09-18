@@ -9,6 +9,9 @@ owncloud:
   username: owncloud
   password: owncloud
 
+smb:
+  path: "//<seu-servidor-smb>/<seu-compartilhamento>"
+
 mariadb:
   enabled: false
 
@@ -24,7 +27,7 @@ persistence:
   enabled: true
   owncloud:
     accessMode: ReadWriteOnce
-    className: local-storage
+    #className: local-storage
     size: 8Gi
     nfs: {}
 

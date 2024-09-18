@@ -8,8 +8,17 @@ spec:
     storage: {{ .Values.persistence.owncloud.size }}
   accessModes:
     - {{ .Values.persistence.owncloud.accessMode }}
-  storageClassName: {{ .Values.persistence.owncloud.className }}
-  hostPath:
-    path: /mnt/data/{{ .Release.Name }}
-  volumeMode: Filesystem
+  #storageClassName: {{ .Values.persistence.owncloud.className }}
+  # hostPath:
+  #   path: /mnt/data/{{ .Release.Name }}
+  # volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: {{ .Release.Name }}-pv  # Nome único do volume
+    readOnly: false
+    volumeAttributes:
+      source: "//<seu-servidor-smb>/<seu-compartilhamento>"  # Caminho SMB no TrueNAS
+    nodeStageSecretRef:
+      name: {{ .Release.Name }}-smb
+      namespace: {{ .Release.Name }}
