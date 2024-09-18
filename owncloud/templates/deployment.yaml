@@ -36,8 +36,8 @@ spec:
       #   - name: owncloud-data
       #     mountPath: /mnt/data
       securityContext:
-        fsGroup: 33          # Define o grupo www-data (33)
-        runAsUser: 33         # Define o usuário www-data (33)
+        fsGroup: 0          # Define o grupo www-data (33)
+        runAsUser: 0         # Define o usuário www-data (33)
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
