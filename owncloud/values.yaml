@@ -68,7 +68,7 @@ securityContext:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: false
-  runAsNonRoot: true
+  runAsNonRoot: false
   fsGroup: 2000
   runAsUser: 1000
   runAsGroup: 1000
