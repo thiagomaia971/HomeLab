@@ -43,10 +43,6 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          command:
-            - "/bin/bash"
-            - "-c"
-            - set -euo pipefail; while true; do echo $(date) >> /mnt/data/outfile; sleep 1; done
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: OWNCLOUD_DOMAIN
