@@ -34,7 +34,7 @@ spec:
         command: ['sh', '-c', 'chown -R www-data:www-data /mnt/data/files && chown -R www-data:www-data /mnt/data/config']
         volumeMounts:
         - name: owncloud-data
-          mountPath: /mnt/data/files
+          mountPath: /mnt/data
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
