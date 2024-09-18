@@ -10,6 +10,8 @@ owncloud:
   password: owncloud
 
 smb:
+  username:
+  password:
   path: "//<seu-servidor-smb>/<seu-compartilhamento>"
 
 mariadb:
