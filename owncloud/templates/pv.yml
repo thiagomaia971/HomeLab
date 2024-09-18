@@ -18,7 +18,7 @@ spec:
     volumeHandle: {{ .Release.Name }}-pv  # Nome único do volume
     readOnly: false
     volumeAttributes:
-      source: "//<seu-servidor-smb>/<seu-compartilhamento>"  # Caminho SMB no TrueNAS
+      source: {{ .Values.smb.path }}  # Caminho SMB no TrueNAS
     nodeStageSecretRef:
       name: {{ .Release.Name }}-smb
       namespace: {{ .Release.Name }}
