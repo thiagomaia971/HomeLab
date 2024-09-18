@@ -43,6 +43,10 @@ spec:
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          command:
+            - "/bin/bash"
+            - "-c"
+            - chown -R www-data:www-data /mnt/data && chmod -R 775 /mnt/data
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: OWNCLOUD_DOMAIN
