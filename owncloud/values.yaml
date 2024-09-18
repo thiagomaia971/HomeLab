@@ -29,7 +29,7 @@ persistence:
   enabled: true
   owncloud:
     accessMode: ReadWriteOnce
-    #className: local-storage
+    className: owncloud-storage-class
     size: 8Gi
     nfs: {}
 

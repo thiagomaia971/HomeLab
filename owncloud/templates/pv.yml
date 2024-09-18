@@ -8,7 +8,7 @@ spec:
     storage: {{ .Values.persistence.owncloud.size }}
   accessModes:
     - {{ .Values.persistence.owncloud.accessMode }}
-  #storageClassName: {{ .Values.persistence.owncloud.className }}
+  storageClassName: {{ .Values.persistence.owncloud.className }}
   # hostPath:
   #   path: /mnt/data/{{ .Release.Name }}
   # volumeMode: Filesystem
@@ -20,5 +20,5 @@ spec:
     volumeAttributes:
       source: {{ .Values.smb.path }}  # Caminho SMB no TrueNAS
     nodeStageSecretRef:
-      name: {{ .Release.Name }}-smb
+      name: {{ .Release.Name }}-smb-secret
       namespace: {{ .Release.Name }}
