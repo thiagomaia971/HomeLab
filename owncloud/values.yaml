@@ -59,9 +59,9 @@ serviceAccount:
 podAnnotations: {}
 
 podSecurityContext: 
-  fsGroup: 2000
-  runAsUser: 1000
-  runAsGroup: 1000
+  fsGroup: 33
+  runAsUser: 33
+  runAsGroup: 33
 
 securityContext: 
   # capabilities:
@@ -69,9 +69,9 @@ securityContext:
   #   - ALL
   # readOnlyRootFilesystem: false
   runAsNonRoot: false
-  fsGroup: 2000
-  runAsUser: 1000
-  runAsGroup: 1000
+  fsGroup: 33
+  runAsUser: 33
+  runAsGroup: 33
 
 service:
   type: NodePort
