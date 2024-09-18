@@ -46,7 +46,7 @@ spec:
           command:
             - "/bin/bash"
             - "-c"
-            - chown -R www-data:www-data /mnt/data
+            - "chown -R www-data:www-data /mnt/data"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: OWNCLOUD_DOMAIN
