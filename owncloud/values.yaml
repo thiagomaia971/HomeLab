@@ -28,7 +28,7 @@ externalDatabase:
 persistence:
   enabled: true
   owncloud:
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     #className: local-storage
     size: 8Gi
     nfs: {}
