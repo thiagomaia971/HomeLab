@@ -28,6 +28,14 @@ spec:
       serviceAccountName: {{ include "owncloud.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      # Adicionando initContainers para ajustar permissões
+      initContainers:
+      - name: init-permissions
+        image: busybox
+        command: ['sh', '-c', 'chown -R www-data:www-data /mnt/data/apps /mnt/data/config /mnt/data/files /mnt/data/sessions && chmod -R 775 /mnt/data/apps /mnt/data/config /mnt/data/files /mnt/data/sessions']
+        volumeMounts:
+        - name: owncloud-data
+          mountPath: /mnt/data
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
