@@ -10,9 +10,9 @@ spec:
     - {{ .Values.persistence.owncloud.accessMode }}
   # storageClassName: {{ .Values.persistence.owncloud.className }}
   persistentVolumeReclaimPolicy: Retain
-  mountOptions:
-    - dir_mode=0777
-    - file_mode=0777
+  # mountOptions:
+  #   - dir_mode=0777
+  #   - file_mode=0777
   csi:
     driver: smb.csi.k8s.io
     volumeHandle: {{ .Release.Name }}-pv  # Nome único do volume
