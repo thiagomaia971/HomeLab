@@ -29,15 +29,15 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       # Adicionando initContainers para ajustar permissões
-      initContainers:
-      - name: init-permissions
-        image: busybox
-        command: ['sh', '-c', 'echo "Setting permissions..."; chown -R www-data:www-data /mnt/data && chmod -R 775 /mnt/data && echo "Permissions set"']
-        volumeMounts:
-        - name: owncloud-data
-          mountPath: /mnt/data
-        - name: www-owncloud-data
-          mountPath: /var/www/owncloud
+      # initContainers:
+      # - name: init-permissions
+      #   image: busybox
+      #   command: ['sh', '-c', 'echo "Setting permissions..."; chown -R www-data:www-data /mnt/data && chmod -R 775 /mnt/data && echo "Permissions set"']
+      #   volumeMounts:
+      #   - name: owncloud-data
+      #     mountPath: /mnt/data
+      #   - name: www-owncloud-data
+      #     mountPath: /var/www/owncloud
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -117,8 +117,8 @@ spec:
           volumeMounts:
           - name: owncloud-data
             mountPath: /mnt/data
-          - name: www-owncloud-data
-            mountPath: /var/www/owncloud
+          # - name: www-owncloud-data
+          #   mountPath: /var/www/owncloud
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -135,6 +135,6 @@ spec:
         - name: owncloud-data
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-pvc
-        - name: www-owncloud-data
-          persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-pvc
+        # - name: www-owncloud-data
+        #   persistentVolumeClaim:
+        #     claimName: {{ .Release.Name }}-pvc
