@@ -14,9 +14,42 @@
     {
       "splitTerminals": [
         {
+          "name": "xeon-proxmox",
+          "commands": [
+            "ssh root@192.168.18.200"
+          ],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
           "name": "k8s",
           "commands": [
             "ssh root@192.168.18.240"
+          ],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "node01",
+          "commands": [
+            "ssh root@192.168.18.241"
+          ],
+          "shouldRunCommands": false
+        }
+      ]
+    },
+    {
+      "splitTerminals": [
+        {
+          "name": "portainer",
+          "commands": [
+            "ssh root@192.168.18.202"
           ],
           "shouldRunCommands": false
         }
