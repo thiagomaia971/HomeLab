@@ -32,7 +32,7 @@ spec:
       initContainers:
       - name: init-permissions
         image: busybox
-        command: ['sh', '-c', 'echo "Setting permissions..."; chown -R www-data:www-data /mnt/data && chmod -R 775 /mnt/data && chown -R www-data:www-data /var/www/clients/client2/our.comedaddymummy.com/ && echo "Permissions set"']
+        command: ['sh', '-c', 'echo "Setting permissions..."; chown -R www-data:www-data /mnt/data && chmod -R 775 /mnt/data && echo "Permissions set"']
         volumeMounts:
         - name: owncloud-data
           mountPath: /mnt/data
