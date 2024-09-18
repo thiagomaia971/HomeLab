@@ -13,6 +13,7 @@ smb:
   username:
   password:
   path: "//<seu-servidor-smb>/<seu-compartilhamento>"
+  volumeHandle:
 
 mariadb:
   enabled: false

@@ -1,34 +1,34 @@
-{{- if .Values.persistence.enabled -}}
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: {{ include "owncloud.fullname" . }}
-  namespace: {{ .Release.Name }}
-provisioner: kubernetes.io/gce-pd
-parameters:
-  type: pd-standard
-reclaimPolicy: Retain
-allowVolumeExpansion: true
-mountOptions:
-  - debug
-{{- end -}}
----
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: {{ .Values.persistence.owncloud.className }}
-  namespace: {{ .Release.Name }}
-provisioner: smb.csi.k8s.io
-parameters:
-  source: {{ .Values.smb.path }}
-  csi.storage.k8s.io/provisioner-secret-name: {{ .Release.Name }}-smb-secret 
-  csi.storage.k8s.io/provisioner-secret-namespace: {{ .Release.Name }} 
-  csi.storage.k8s.io/node-stage-secret-name: {{ .Release.Name }}-smb-secret 
-  csi.storage.k8s.io/node-stage-secret-namespace: {{ .Release.Name }} 
-reclaimPolicy: Delete
-volumeBindingMode: Immediate
-mountOptions:
-  - dir_mode=0777
-  - file_mode=0777
-  - uid=1001
-  - gid=1001
+# {{- if .Values.persistence.enabled -}}
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: {{ include "owncloud.fullname" . }}
+#   namespace: {{ .Release.Name }}
+# provisioner: kubernetes.io/gce-pd
+# parameters:
+#   type: pd-standard
+# reclaimPolicy: Retain
+# allowVolumeExpansion: true
+# mountOptions:
+#   - debug
+# {{- end -}}
+# ---
+# apiVersion: storage.k8s.io/v1
+# kind: StorageClass
+# metadata:
+#   name: {{ .Values.persistence.owncloud.className }}
+#   namespace: {{ .Release.Name }}
+# provisioner: smb.csi.k8s.io
+# parameters:
+#   source: {{ .Values.smb.path }}
+#   csi.storage.k8s.io/provisioner-secret-name: {{ .Release.Name }}-smb-secret 
+#   csi.storage.k8s.io/provisioner-secret-namespace: {{ .Release.Name }} 
+#   csi.storage.k8s.io/node-stage-secret-name: {{ .Release.Name }}-smb-secret 
+#   csi.storage.k8s.io/node-stage-secret-namespace: {{ .Release.Name }} 
+# reclaimPolicy: Delete
+# volumeBindingMode: Immediate
+# mountOptions:
+#   - dir_mode=0777
+#   - file_mode=0777
+#   - uid=1001
+#   - gid=1001
