@@ -36,6 +36,8 @@ spec:
         volumeMounts:
         - name: owncloud-data
           mountPath: /mnt/data
+        - name: www-owncloud-data
+          mountPath: /var/www/owncloud
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
@@ -115,6 +117,8 @@ spec:
           volumeMounts:
           - name: owncloud-data
             mountPath: /mnt/data
+          - name: www-owncloud-data
+            mountPath: /var/www/owncloud
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -129,5 +133,8 @@ spec:
       {{- end }}
       volumes:
         - name: owncloud-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-pvc
+        - name: www-owncloud-data
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-pvc
