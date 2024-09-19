@@ -13,11 +13,6 @@ spec:
       protocol: TCP
       name: owncloud
       nodePort: {{ .Values.service.nodePort}}
-    - port: 3306
-      targetPort: 3306
-      protocol: TCP
-      name: mariadb
-      nodePort: {{ .Values.service.dbNodePort}}
   selector:
     {{- include "owncloud.selectorLabels" . | nindent 4 }}
 {{- if not .Values.mariadb.enabled }}
