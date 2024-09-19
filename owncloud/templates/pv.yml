@@ -8,7 +8,7 @@ spec:
     storage: {{ .Values.persistence.owncloud.size }}
   accessModes:
     - {{ .Values.persistence.owncloud.accessMode }}
-  # storageClassName: {{ .Values.persistence.owncloud.className }}
+  storageClassName: {{ .Values.persistence.owncloud.className }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
     - dir_mode=0777
@@ -21,7 +21,7 @@ spec:
     - noserverino  # required to prevent data corruption
   csi:
     driver: smb.csi.k8s.io
-    volumeHandle: {{ .Release.Name }}-pv  # Nome único do volume
+    volumeHandle: {{ .Values.smb.volumeHandle }}  # Nome único do volume
     readOnly: false
     volumeAttributes:
       source: {{ .Values.smb.path }}  # Caminho SMB no TrueNAS
