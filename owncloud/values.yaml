@@ -22,6 +22,7 @@ mariadb:
   enabled: true
   replicaCount: 1
   fullname: owncloud
+  labels: {}
   image:
     repository: mariadb
     tag: latest
