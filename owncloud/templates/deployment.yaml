@@ -147,11 +147,11 @@ spec:
   replicas: {{ .Values.mariadb.replicaCount }}
   selector:
     matchLabels:
-      app: {{ include "mariadb.name" . }}
+      app: {{ .Values.mariadb.db.name }}
   template:
     metadata:
       labels:
-        app: {{ include "mariadb.name" . }}
+        app: {{ .Values.mariadb.db.name }}
     spec:
       containers:
         - name: mariadb
@@ -161,7 +161,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "mariadb.fullname" . }}-secret
+                  name: {{ printf "%s-%s" .Release.Name "externaldb"  }}
                   key: root-password
             - name: MYSQL_DATABASE
               value: {{ .Values.mariadb.db.name | quote }}
@@ -170,7 +170,7 @@ spec:
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "mariadb.fullname" . }}-secret
+                  name: {{ printf "%s-%s" .Release.Name "externaldb"  }}
                   key: mariadb-password
           ports:
             - containerPort: 3306
@@ -194,7 +194,7 @@ spec:
       volumes:
         - name: mariadb-data
           persistentVolumeClaim:
-            claimName: {{ include "mariadb.fullname" . }}-pvc
+            claimName: {{ .Release.Name }}-db-pvc
 {{- end }}
 
 # ---
