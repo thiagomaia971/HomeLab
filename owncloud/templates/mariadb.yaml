@@ -1,0 +1,47 @@
+{{- if not .Values.mariadb.enabled }}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Namespace }}-db
+  namespace: {{ .Release.Namespace }}
+spec:
+  serviceName: {{ .Release.Namespace }}-db
+  replicas: {{ .Values.mariadb.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Namespace }}-db
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Namespace }}-db
+    spec:
+      containers:
+        - name: {{ .Release.Namespace }}-db
+          image: {{ .Values.mariadb.image.repository }}:{{ .Values.mariadb.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s" .Release.Name "externaldb" }}
+                  key: db-password
+            - name: MYSQL_DATABASE
+              value: {{ .Values.mariadb.db.name | quote }}
+            - name: MYSQL_USER
+              value: {{ .Values.mariadb.db.user | quote }}
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ printf "%s-%s" .Release.Name "externaldb" }}
+                  key: db-password
+                  key: db-password
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: mariadb-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mariadb-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-db-pvc
+{{- end }}
