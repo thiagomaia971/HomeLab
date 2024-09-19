@@ -34,9 +34,10 @@ persistence:
   owncloud:
     accessMode: ReadWriteMany
     className: owncloud-storage-class
-    size: 8Gi
-    rootSize: 100Gi
-    mode: 0777
+    size: 100Gi
+    rootSize: 8Gi
+    dirMode: "dir_mode=0777"
+    fileMode: "file_mode=0777"
     nfs: {}
 
 redis:

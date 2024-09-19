@@ -34,8 +34,8 @@ mountOptions:
   - vers=3.0
   - nosuid
   - noexec
-  - dir_mode={{ .Values.persistence.owncloud.mode }}
-  - file_mode={{ .Values.persistence.owncloud.mode }}
+  - {{ .Values.persistence.owncloud.dirMode }}
+  - {{ .Values.persistence.owncloud.fileMode }}
   - uid=1001
   - gid=1001
   - noperm
