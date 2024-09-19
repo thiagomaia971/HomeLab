@@ -143,8 +143,6 @@ kind: Deployment
 metadata:
   name: {{ .Release.Namespace }}-db
   namespace: {{ .Release.Namespace }}
-  labels:
-    {{- include "mariadb.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.mariadb.replicaCount }}
   selector:
