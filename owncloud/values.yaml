@@ -34,7 +34,7 @@ mariadb:
 
 externalDatabase:
   type: "mysql"
-  host: "localhost"
+  host: "owncloud-db"
   port: 3306
   name: owncloud
   user: root
