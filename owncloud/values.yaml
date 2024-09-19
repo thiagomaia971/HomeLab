@@ -21,6 +21,7 @@ smb:
 mariadb:
   enabled: true
   replicaCount: 1
+  fullname: owncloud
   image:
     repository: mariadb
     tag: latest
