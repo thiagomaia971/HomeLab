@@ -17,7 +17,7 @@ smb:
   volumeHandle:
 
 mariadb:
-  enabled: false
+  enabled: true
 
 externalDatabase:
   type: ""
