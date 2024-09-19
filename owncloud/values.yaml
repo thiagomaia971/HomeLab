@@ -32,9 +32,10 @@ externalDatabase:
 persistence:
   enabled: true
   owncloud:
-    accessMode: ReadWriteOnce
+    accessMode: ReadWriteMany
     className: owncloud-storage-class
     size: 8Gi
+    rootSize: 100Gi
     nfs: {}
 
 redis:

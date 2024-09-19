@@ -39,7 +39,7 @@ spec:
     - {{ .Values.persistence.owncloud.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.owncloud.size }}
+      storage: {{ .Values.persistence.owncloud.rootSize }}
   volumeName: {{ .Release.Name }}-root-pv
   storageClassName: {{ .Values.persistence.owncloud.className }}
 {{- end -}}

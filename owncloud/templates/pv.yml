@@ -36,7 +36,7 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   capacity:
-    storage: {{ .Values.persistence.owncloud.size }}
+    storage: {{ .Values.persistence.owncloud.rootSize }}
   accessModes:
     - {{ .Values.persistence.owncloud.accessMode }}
   storageClassName: {{ .Values.persistence.owncloud.className }}
