@@ -36,6 +36,7 @@ persistence:
     className: owncloud-storage-class
     size: 8Gi
     rootSize: 100Gi
+    mode: 0777
     nfs: {}
 
 redis:
