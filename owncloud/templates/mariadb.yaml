@@ -40,8 +40,19 @@ spec:
           volumeMounts:
             - name: mariadb-data
               mountPath: /var/lib/mysql
+            - name: owncloud-data
+              mountPath: /mnt/owncloud-data
+              readOnly: false
+            - name: owncloud-root-data
+              mountPath: /mnt/data
       volumes:
         - name: mariadb-data
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-db-pvc
+        - name: owncloud-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-pvc
+        - name: owncloud-root-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-root-pvc
 {{- end }}
