@@ -71,7 +71,7 @@ spec:
     volumeHandle: {{ .Values.smb.volumeHandle }}#mariadb  # Nome único do volume
     readOnly: false
     volumeAttributes:
-      source: {{ .Values.smb.path }}/mariadb  # Caminho SMB no TrueNAS
+      source: {{ .Values.smb.path }}  # Caminho SMB no TrueNAS
     nodeStageSecretRef:
       name: {{ .Release.Name }}-smb-secret
       namespace: {{ .Release.Name }}
