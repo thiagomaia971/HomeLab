@@ -38,5 +38,5 @@ spec:
       name: mariadb
       nodePort: {{ .Values.service.dbNodePort}}
   selector:
-    {{ .Release.Namespace }}-db
+    app: {{ .Release.Namespace }}-db
 {{- end }}
