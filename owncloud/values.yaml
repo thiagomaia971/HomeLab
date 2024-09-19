@@ -19,7 +19,15 @@ smb:
   volumeHandle:
 
 mariadb:
-  enabled: false
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: mariadb
+    tag: latest
+    pullPolicy: IfNotPresent
+  db:
+    name: owncloud
+    user: owncloud_user
 
 externalDatabase:
   type: ""
