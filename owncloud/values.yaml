@@ -9,6 +9,8 @@ owncloud:
   username: owncloud
   password: owncloud
   datadir: /mnt/data/files
+  # mariadb:
+  #   fullname: ""
 
 smb:
   username:
@@ -17,7 +19,7 @@ smb:
   volumeHandle:
 
 mariadb:
-  enabled: true
+  enabled: false
 
 externalDatabase:
   type: ""
