@@ -28,6 +28,12 @@ parameters:
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
+  - sec=krb5
+  - cruid=1000
+  - seal
+  - vers=3.0
+  - nosuid
+  - noexec
   - dir_mode=0777
   - file_mode=0777
   - uid=1001
