@@ -162,7 +162,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ printf "%s-%s" .Release.Name "externaldb"  }}
-                  key: root-password
+                  key: db-password
             - name: MYSQL_DATABASE
               value: {{ .Values.mariadb.db.name | quote }}
             - name: MYSQL_USER
@@ -171,7 +171,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: {{ printf "%s-%s" .Release.Name "externaldb"  }}
-                  key: mariadb-password
+                  key: db-password
           ports:
             - containerPort: 3306
               name: mysql
