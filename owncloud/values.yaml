@@ -75,9 +75,9 @@ securityContext: {}
   # readOnlyRootFilesystem: false
   # runAsNonRoot: true
   # runAsUser: 1001
-  # runAsUser: 10000
-  # runAsGroup: 10000
-  # fsGroup: 10000
+  runAsUser: 33
+  runAsGroup: 33
+  fsGroup: 33
 
 service:
   type: NodePort
