@@ -136,29 +136,29 @@ spec:
         - name: owncloud-root-data
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-root-pvc
----
-apiVersion: v1
-kind: Pod
-metadata:
-  name: pvc-debug
-  namespace: {{ .Release.Name }}
-spec:
-  containers:
-  - name: debug-container
-    image: busybox  # ou alpine, se preferir
-    command: ["/bin/sh", "-c", "sleep 3600"]  # Faz o pod "esperar"
-    volumeMounts:
-      - name: owncloud-data
-        mountPath: /mnt/owncloud-data
-        readOnly: false
-      - name: owncloud-root-data
-        mountPath: /mnt/data
-        readOnly: false
-  volumes:
-    - name: owncloud-data
-      persistentVolumeClaim:
-        claimName: {{ .Release.Name }}-pvc
-    - name: owncloud-root-data
-      persistentVolumeClaim:
-        claimName: {{ .Release.Name }}-root-pvc
-  restartPolicy: Never
+# ---
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: pvc-debug
+#   namespace: {{ .Release.Name }}
+# spec:
+#   containers:
+#   - name: debug-container
+#     image: busybox  # ou alpine, se preferir
+#     command: ["/bin/sh", "-c", "sleep 3600"]  # Faz o pod "esperar"
+#     volumeMounts:
+#       - name: owncloud-data
+#         mountPath: /mnt/owncloud-data
+#         readOnly: false
+#       - name: owncloud-root-data
+#         mountPath: /mnt/data
+#         readOnly: false
+#   volumes:
+#     - name: owncloud-data
+#       persistentVolumeClaim:
+#         claimName: {{ .Release.Name }}-pvc
+#     - name: owncloud-root-data
+#       persistentVolumeClaim:
+#         claimName: {{ .Release.Name }}-root-pvc
+#   restartPolicy: Never
