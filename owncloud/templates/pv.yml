@@ -55,7 +55,7 @@ spec:
     storage: {{ .Values.persistence.owncloud.dbSize }}
   accessModes:
     - {{ .Values.persistence.owncloud.accessMode }}
-  storageClassName: {{ .Values.persistence.owncloud.className }}
+  # storageClassName: {{ .Values.persistence.owncloud.className }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
     - {{ .Values.persistence.owncloud.dirMode }}
@@ -71,7 +71,7 @@ spec:
     volumeHandle: {{ .Values.smb.volumeHandle }}#mariadb  # Nome único do volume
     readOnly: false
     volumeAttributes:
-      source: {{ .Values.smb.path }}/mariadb  # Caminho SMB no TrueNAS
+      source: {{ .Values.mariadb.path }}  # Caminho SMB no TrueNAS
     nodeStageSecretRef:
       name: {{ .Release.Name }}-smb-secret
       namespace: {{ .Release.Name }}

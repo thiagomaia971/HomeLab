@@ -23,6 +23,7 @@ mariadb:
   replicaCount: 1
   fullname: owncloud
   labels: {}
+  path: "//<seu-servidor-smb>/<seu-compartilhamento>/mariadb"
   image:
     repository: mariadb
     tag: latest
