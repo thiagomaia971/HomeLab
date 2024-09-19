@@ -67,7 +67,7 @@ securityContext:
   # capabilities:
   #   drop:
   #   - ALL
-  # readOnlyRootFilesystem: false
+  readOnlyRootFilesystem: true
   runAsNonRoot: true
   fsGroup: 33
   runAsUser: 33
