@@ -22,3 +22,19 @@ spec:
     nodeStageSecretRef:
       name: {{ .Release.Name }}-smb-secret
       namespace: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-root-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.owncloud.size }}
+  accessModes:
+    - {{ .Values.persistence.owncloud.accessMode }}
+  storageClassName: {{ .Values.persistence.owncloud.className }}
+  hostPath:
+    path: /mnt/data/{{ .Release.Name }}
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain

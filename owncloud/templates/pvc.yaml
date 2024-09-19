@@ -28,4 +28,18 @@ spec:
       storage: {{ .Values.persistence.owncloud.size }}
   volumeName: {{ .Release.Name }}-pv
   # storageClassName: {{ .Values.persistence.owncloud.className }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-root-pvc
+  namespace: {{ .Release.Name }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.owncloud.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.owncloud.size }}
+  volumeName: {{ .Release.Name }}-root-pv
+  storageClassName: {{ .Values.persistence.owncloud.className }}
 {{- end -}}
