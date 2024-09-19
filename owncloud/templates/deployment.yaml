@@ -172,6 +172,7 @@ spec:
                 secretKeyRef:
                   name: {{ printf "%s-%s" .Release.Name "externaldb" }}
                   key: db-password
+                  key: db-password
           ports:
             - containerPort: 3306
               name: mysql
