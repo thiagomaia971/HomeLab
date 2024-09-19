@@ -41,7 +41,7 @@ spec:
     requests:
       storage: {{ .Values.persistence.owncloud.dbSize }}
   volumeName: {{ .Release.Name }}-db-pv
-  # storageClassName: {{ .Values.persistence.owncloud.className }}
+  storageClassName: {{ .Values.persistence.owncloud.className }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
