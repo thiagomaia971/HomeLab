@@ -36,8 +36,8 @@ persistence:
     className: owncloud-storage-class
     size: 100Gi
     rootSize: 8Gi
-    dirMode: "dir_mode=2770"
-    fileMode: "file_mode=2770"
+    dirMode: "dir_mode=0770"
+    fileMode: "file_mode=0770"
     nfs: {}
 
 redis:
