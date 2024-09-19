@@ -64,14 +64,14 @@ podAnnotations: {}
 podSecurityContext: 
   fsGroup: 33
   runAsUser: 33
-  # runAsGroup: 33
+  runAsGroup: 33
 
 securityContext: 
   # capabilities:
   #   drop:
   #   - ALL
   # readOnlyRootFilesystem: true
-  # runAsNonRoot: true
+  runAsNonRoot: true
   fsGroup: 33
   runAsUser: 33
   runAsGroup: 33
