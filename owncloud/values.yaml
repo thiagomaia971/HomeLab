@@ -8,6 +8,7 @@ owncloud:
   domain: drive.tmaia.cloud
   username: owncloud
   password: owncloud
+  datadir: /mnt/data/files
 
 smb:
   username:
