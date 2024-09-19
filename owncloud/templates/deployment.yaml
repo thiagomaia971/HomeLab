@@ -188,9 +188,9 @@ spec:
             timeoutSeconds: 5
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-      volumeMounts:
-        - name: mariadb-data
-          mountPath: /var/lib/mysql
+          volumeMounts:
+            - name: mariadb-data
+              mountPath: /var/lib/mysql
       volumes:
         - name: mariadb-data
           persistentVolumeClaim:
