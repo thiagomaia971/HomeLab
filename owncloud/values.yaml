@@ -30,7 +30,7 @@ mariadb:
     pullPolicy: IfNotPresent
   db:
     name: owncloud
-    user: owncloud_user
+    user: owncloud
 
 externalDatabase:
   type: "mysql"
