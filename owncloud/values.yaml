@@ -61,9 +61,9 @@ serviceAccount:
 
 podAnnotations: {}
 
-podSecurityContext: {}
-  # fsGroup: 33
-  # runAsUser: 33
+podSecurityContext: 
+  fsGroup: 33
+  runAsUser: 33
   # runAsGroup: 33
 
 securityContext: 
