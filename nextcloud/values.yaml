@@ -262,10 +262,10 @@ nextcloud:
   #        key: secret_key
 
   # Extra init containers that runs before pods start.
-  extraInitContainers: 
-   - name: do-something
-     image: busybox
-     command: ['sh', '-c', 'touch /path/to/file && chmod 600 /path/to/file']
+  extraInitContainers: []
+  #  - name: do-something
+  #    image: busybox
+  #    command: ['sh', '-c', 'touch /path/to/file && chmod 600 /path/to/file']
 
   # Extra sidecar containers.
   extraSidecarContainers: []
