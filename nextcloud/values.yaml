@@ -411,10 +411,10 @@ mariadb:
   ##
   primary:
     persistence:
-      enabled: false
+      enabled: true
       # Use an existing Persistent Volume Claim (must be created ahead of time)
-      existingClaim: ""
-      storageClass: ""
+      existingClaim: {{ .Values.persistence.className }}
+      storageClass: {{ .Values.persistence.className }}
       accessMode: ReadWriteOnce
       size: 8Gi
 
