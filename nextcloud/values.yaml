@@ -279,12 +279,14 @@ nextcloud:
   # Extra mounts for the pods. Example shown is for connecting a legacy NFS volume
   # to NextCloud pods in Kubernetes. This can then be configured in External Storage
   extraVolumes:
-    - name: nextcloud-data-smb
+    - name: nextcloud-data
       persistentVolumeClaim:
         claimName: nextcloud-pvc
   extraVolumeMounts:
-    - name: nextcloud-data-smb
+    - name: nextcloud-data
       mountPath: /mnt/nextcloud-data
+      
+      
 
   # Set securityContext parameters for the nextcloud CONTAINER only (will not affect nginx container).
   # For example, you may need to define runAsNonRoot directive
@@ -528,7 +530,7 @@ persistence:
     subPath:
     annotations: {}
     # storageClass: "-"
-    # existingClaim:
+    existingClaim: nextcloud-pvc
     accessMode: ReadWriteOnce
     size: 8Gi
 
