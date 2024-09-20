@@ -43,7 +43,6 @@ nextcloud:
   adminUser: admin
   adminPassword: admin
   dataDir: /var/www/html/data
-  trustedDomains: 
 
 mariadb:
   image:
