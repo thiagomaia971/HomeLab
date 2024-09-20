@@ -1,33 +1,17 @@
-{{- if .Values.persistence.owncloud.nfs.enabled -}}
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{ .Release.Name }}-pvc
-  namespace: {{ .Release.Name }}
-spec:
-  accessModes:
-    - ReadWriteOnce
-  capacity:
-    storage: 100Gi
-  nfs:
-    server: {{ .Values.persistence.owncloud.nfs.server }}
-    path: {{ .Values.persistence.owncloud.nfs.path }}
-{{end}}
----
 {{- if .Values.persistence.enabled -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-pvc
+  name: {{ .Release.Name }}-root-pvc
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
-    - {{ .Values.persistence.owncloud.accessMode }}
+    - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.owncloud.size }}
-  volumeName: {{ .Release.Name }}-pv
-  storageClassName: {{ .Values.persistence.owncloud.className }}
+      storage: {{ .Values.persistence.rootSize }}
+  volumeName: {{ .Release.Name }}-root-pv
+  storageClassName: {{ .Values.persistence.className }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -36,24 +20,24 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
-    - {{ .Values.persistence.owncloud.accessMode }}
+    - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.owncloud.dbSize }}
+      storage: {{ .Values.persistence.dbSize }}
   volumeName: {{ .Release.Name }}-db-pv
-  # storageClassName: {{ .Values.persistence.owncloud.className }}
+  # storageClassName: {{ .Values.persistence.className }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-root-pvc
+  name: {{ .Release.Name }}-pvc
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
-    - {{ .Values.persistence.owncloud.accessMode }}
+    - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.owncloud.rootSize }}
-  volumeName: {{ .Release.Name }}-root-pv
-  storageClassName: {{ .Values.persistence.owncloud.className }}
+      storage: {{ .Values.persistence.size }}
+  volumeName: {{ .Release.Name }}-pv
+  storageClassName: {{ .Values.persistence.className }}
 {{- end -}}

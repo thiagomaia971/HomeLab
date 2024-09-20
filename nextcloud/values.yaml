@@ -531,6 +531,13 @@ persistence:
   size: 50Gi
   dbSize: 8Gi
   rootSize: 8Gi
+  dirMode: "dir_mode=0770"
+  fileMode: "file_mode=0770"
+  smb:
+    username:
+    password:
+    path: "//<seu-servidor-smb>/<seu-compartilhamento>"
+    volumeHandle:
 
   ## Use an additional pvc for the data directory rather than a subpath of the default PVC
   ## Useful to store data on a different storageClass (e.g. on slower disks)
