@@ -417,9 +417,8 @@ mariadb:
       storageClass: nextcloud-storage-class
       accessMode: ReadWriteOnce
       size: 8Gi
-  service:
-    nodePorts:
-      mysql: 30010
+service:
+  nodePort: 30010
 
 ##
 ## PostgreSQL chart configuration
