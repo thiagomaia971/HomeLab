@@ -43,6 +43,8 @@ spec:
                   key: {{ .Release.Name }}-admin-password
             - name: NEXTCLOUD_DATA_DIR
               value: {{ .Values.nextcloud.dataDir }}
+            - name: NEXTCLOUD_TRUSTED_DOMAINS 
+              value: {{ .Values.nextcloud.trustedDomains }}
           volumeMounts:
             - name: {{ .Release.Name }}-data
               mountPath: /var/www/html
