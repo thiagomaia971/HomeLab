@@ -11,20 +11,20 @@ spec:
       storage: {{ .Values.persistence.app.size }}
   volumeName: {{ .Release.Name }}-app-pv
   storageClassName: {{ .Values.persistence.app.storageClassName }}
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ .Release.Name }}-data-pvc
-  namespace: {{ .Release.Name }}
-spec:
-  accessModes:
-    - {{ .Values.persistence.data.accessMode }}
-  resources:
-    requests:
-      storage: {{ .Values.persistence.data.size }}
-  volumeName: {{ .Release.Name }}-data-pv
-  storageClassName: {{ .Values.persistence.data.storageClassName }}
+# ---
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#   name: {{ .Release.Name }}-data-pvc
+#   namespace: {{ .Release.Name }}
+# spec:
+#   accessModes:
+#     - {{ .Values.persistence.data.accessMode }}
+#   resources:
+#     requests:
+#       storage: {{ .Values.persistence.data.size }}
+#   volumeName: {{ .Release.Name }}-data-pv
+#   storageClassName: {{ .Values.persistence.data.storageClassName }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
