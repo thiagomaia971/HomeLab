@@ -93,6 +93,8 @@ spec:
           volumeMounts:
             - name: {{ .Release.Name }}-db-data
               mountPath: /var/lib/mysql
+            - name: {{ .Release.Name }}-db-data
+              mountPath: /etc/apache2/conf-enabled/servername.conf
       volumes:
         - name: {{ .Release.Name }}-db-data
           persistentVolumeClaim:
