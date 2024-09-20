@@ -8,11 +8,11 @@ service:
   app:
     type: NodePort
     port: 80
-    nodePort: 30013
+    nodePort: 30015
   db:
     type: NodePort
     port: 3306
-    nodePort: 30012
+    nodePort: 30014
 
 persistence:
   smb:
