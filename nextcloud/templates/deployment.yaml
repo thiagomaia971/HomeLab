@@ -45,7 +45,7 @@ spec:
       volumes:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
-            claimName: {{ .Release.Name }}-pvc
+            claimName: {{ .Release.Name }}-app-pvc
 ---
 apiVersion: apps/v1
 kind: StatefulSet
