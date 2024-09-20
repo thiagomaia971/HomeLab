@@ -47,7 +47,7 @@ spec:
             - name: {{ .Release.Name }}-app
               mountPath: /var/www/html
             - name: {{ .Release.Name }}-data
-              mountPath: /mnt/data/{{ .Release.Name }}-data
+              mountPath: {{ .Values.nextcloud.dataDir }}
           lifecycle:
             postStart:
               exec:
