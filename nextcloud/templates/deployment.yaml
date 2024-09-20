@@ -52,6 +52,10 @@ spec:
             #   mountPath: /etc/apache2/conf-enabled/servername.conf
             - name: {{ .Release.Name }}-data
               mountPath: /etc/apache2/sites-available
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "echo \"ServerName localhost\" | tee -a /etc/apache2/apache2.conf"]
       volumes:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
