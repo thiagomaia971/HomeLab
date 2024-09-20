@@ -90,7 +90,7 @@ nextcloud:
   update: 0
   # If web server is not binding default port, you can define it
   containerPort: 80
-  datadir: /mnt/nextcloud-data-smb
+  datadir: /mnt/nextcloud-data
   persistence:
     subPath:
   # if set, we'll template this list to the NEXTCLOUD_TRUSTED_DOMAINS env var
@@ -279,11 +279,11 @@ nextcloud:
   # Extra mounts for the pods. Example shown is for connecting a legacy NFS volume
   # to NextCloud pods in Kubernetes. This can then be configured in External Storage
   extraVolumes:
-    - name: nextcloud-data-smb
+    - name: nextcloud-data
       persistentVolumeClaim:
         claimName: nextcloud-pvc
   extraVolumeMounts:
-    - name: nextcloud-data-smb
+    - name: nextcloud-data
       mountPath: /mnt/nextcloud-data
       
       
