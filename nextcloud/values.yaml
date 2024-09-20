@@ -512,9 +512,9 @@ persistence:
 
   className: nextcloud-storage-class
   accessMode: ReadWriteOnce
-  size: 50Gi
+  size: 8Gi
   dbSize: 8Gi
-  rootSize: 8Gi
+  dataSize: 50Gi
   dirMode: "dir_mode=0770"
   fileMode: "file_mode=0770"
   smb:

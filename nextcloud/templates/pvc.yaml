@@ -9,7 +9,7 @@ spec:
     - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.rootSize }}
+      storage: {{ .Values.persistence.size }}
   volumeName: {{ .Release.Name }}-root-pv
   storageClassName: local-storage #{{ .Values.persistence.className }}
 ---
@@ -37,7 +37,7 @@ spec:
     - {{ .Values.persistence.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.size }}
+      storage: {{ .Values.persistence.dataSize }}
   volumeName: {{ .Release.Name }}-pv
   storageClassName: {{ .Values.persistence.className }}
 {{- end -}}

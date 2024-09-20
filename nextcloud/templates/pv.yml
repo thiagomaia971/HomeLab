@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   capacity:
-    storage: {{ .Values.persistence.rootSize }}
+    storage: {{ .Values.persistence.size }}
   accessModes:
     - {{ .Values.persistence.accessMode }}
   storageClassName: local-storage #{{ .Values.persistence.className }}
@@ -52,7 +52,7 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   capacity:
-    storage: {{ .Values.persistence.size }}
+    storage: {{ .Values.persistence.dataSize }}
   accessModes:
     - {{ .Values.persistence.accessMode }}
   storageClassName: {{ .Values.persistence.className }}
