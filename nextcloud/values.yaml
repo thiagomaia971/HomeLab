@@ -502,7 +502,7 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  # storageClass: "-"
+  storageClass: "local-storage"
 
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
