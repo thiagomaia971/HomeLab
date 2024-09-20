@@ -402,7 +402,7 @@ mariadb:
     password: changeme
     # Use existing secret (auth.rootPassword, auth.password, and auth.replicationPassword will be ignored).
     # secret must contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
-    existingSecret: ""
+    existingSecret: "nextcloud-db-secret"
 
   architecture: standalone
 
