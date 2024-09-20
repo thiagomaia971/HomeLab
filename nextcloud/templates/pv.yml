@@ -26,15 +26,15 @@ spec:
     - {{ .Values.persistence.accessMode }}
   # storageClassName: {{ .Values.persistence.className }}
   persistentVolumeReclaimPolicy: Retain
-  # mountOptions:
-  #   - {{ .Values.persistence.dirMode }}
-  #   - {{ .Values.persistence.fileMode }}
+  mountOptions:
+    - {{ .Values.persistence.dirMode }}
+    - {{ .Values.persistence.fileMode }}
   #   - uid=1001
   #   - gid=1001
   #   - noperm
   #   - mfsymlinks
   #   - cache=strict
-  #   - noserverino  # required to prevent data corruption
+    - noserverino  # required to prevent data corruption
   csi:
     driver: smb.csi.k8s.io
     volumeHandle: {{ .Values.persistence.smb.volumeHandle }}/db  # Nome único do volume

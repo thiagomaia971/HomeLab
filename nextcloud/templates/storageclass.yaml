@@ -12,18 +12,18 @@ parameters:
   csi.storage.k8s.io/node-stage-secret-namespace: {{ .Release.Name }} 
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
-# mountOptions:
+mountOptions:
 #   - sec=krb5
 #   - cruid=1000
 #   - seal
 #   - vers=3.0
 #   - nosuid
 #   - noexec
-#   - {{ .Values.persistence.dirMode }}
-#   - {{ .Values.persistence.fileMode }}
+  - {{ .Values.persistence.dirMode }}
+  - {{ .Values.persistence.fileMode }}
 #   - uid=1001
 #   - gid=1001
 #   - noperm
 #   - mfsymlinks
 #   - cache=strict
-#   - noserverino  # required to prevent data corruption
+  - noserverino  # required to prevent data corruption
