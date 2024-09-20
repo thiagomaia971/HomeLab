@@ -29,7 +29,7 @@ spec:
             - name: MYSQL_USER
               value: {{ .Values.mariadb.user }}
             - name: MYSQL_HOST
-              value: db
+              value: {{ .Values.mariadb.host }}
             - name: NEXTCLOUD_ADMIN_USER
               value: {{ .Values.nextcloud.adminUser }}
             - name: NEXTCLOUD_ADMIN_PASSWORD

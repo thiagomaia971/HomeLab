@@ -45,6 +45,7 @@ mariadb:
   database: nextcloud
   user: nextcloud
   password: "nextcloud"
+  host: localhost
 
 ingress:
   enabled: false
