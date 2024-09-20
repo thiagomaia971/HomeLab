@@ -7,7 +7,7 @@ spec:
   capacity:
     storage: {{ .Values.persistence.app.size }}
   accessModes:
-    - ReadWriteOnce
+    - {{ .Values.persistence.app.accessMode }}
   storageClassName: {{ .Values.persistence.app.storageClassName }}
   hostPath:
     path: /mnt/data/{{ .Release.Name }}-app
@@ -24,7 +24,7 @@ spec:
     storage: {{ .Values.persistence.data.size }}
   accessModes:
     - {{ .Values.persistence.data.accessMode }}
-   storageClassName: {{ .Values.persistence.data.className }}
+   storageClassName: {{ .Values.persistence.data.storageClassName }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
     - {{ .Values.persistence.smb.dirMode }}
