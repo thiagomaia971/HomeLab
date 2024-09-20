@@ -417,6 +417,9 @@ mariadb:
       storageClass: nextcloud-storage-class
       accessMode: ReadWriteOnce
       size: 8Gi
+  service:
+    nodePorts:
+      mysql: 30010
 
 ##
 ## PostgreSQL chart configuration
@@ -524,7 +527,7 @@ persistence:
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
-  # existingClaim:
+  existingClaim: nextcloud-root-pvc
 
   className: nextcloud-storage-class
   accessMode: ReadWriteOnce
