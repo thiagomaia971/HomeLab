@@ -1,7 +1,7 @@
 apiVersion: v2
 name: nextcloud
-description: A Helm chart for Nextcloud and MariaDB
-version: 0.1.0
+version: 6.0.0
+appVersion: 30.0.0
 description: A file sharing server that puts the control and security of your own data back into your hands.
 keywords:
   - nextcloud
@@ -21,3 +21,16 @@ maintainers:
     email: christian.ingenhaag@googlemail.com
   - name: billimek
     email: jeff@billimek.com
+# dependencies:
+#   - name: postgresql
+#     version: 15.5.0
+#     repository: oci://registry-1.docker.io/bitnamicharts
+#     condition: postgresql.enabled
+#   - name: mariadb
+#     version: 18.2.0
+#     repository: oci://registry-1.docker.io/bitnamicharts
+#     condition: mariadb.enabled
+#   - name: redis
+#     version: 19.5.0
+#     repository: oci://registry-1.docker.io/bitnamicharts
+#     condition: redis.enabled
