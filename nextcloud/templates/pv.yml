@@ -55,7 +55,7 @@ spec:
     storage: {{ .Values.persistence.db.size }}
   accessModes:
     - {{ .Values.persistence.db.accessMode }}
-   storageClassName: {{ .Values.persistence.db.className }}
+  storageClassName: {{ .Values.persistence.db.className }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
     - {{ .Values.persistence.smb.dirMode }}
