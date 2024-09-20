@@ -21,8 +21,8 @@ persistence:
     volumeHandle: //<your-smb-server-ip>/<Folder-shared>
     source: //<your-smb-server-ip>/<Folder-shared>
     storageClassName: nextcloud-smb-storage-class
-    dirMode: "dir_mode=0770"
-    fileMode: "file_mode=0770"
+    dirMode: dir_mode=0770
+    fileMode: file_mode=0770
   app:
     enabled: true
     size: 10Gi
