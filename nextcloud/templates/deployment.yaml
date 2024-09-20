@@ -340,7 +340,6 @@ spec:
             claimName: {{ template "nextcloud.fullname" . }}-nextcloud
             # claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "nextcloud.fullname" . }}-nextcloud{{- end }}
           emptyDir: {}
-          {{- end }}
         {{- if .Values.nextcloud.configs }}
         - name: nextcloud-config
           configMap:
