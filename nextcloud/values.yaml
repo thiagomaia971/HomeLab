@@ -355,27 +355,27 @@ internalDatabase:
 ## External database configuration
 ##
 externalDatabase:
-  enabled: false
+  enabled: true
 
   ## Supported database engines: mysql or postgresql
   type: mysql
 
   ## Database host
-  host:
+  host: localhost
 
   ## Database user
   user: nextcloud
 
   ## Database password
-  password: ""
+  password: "changeme"
 
   ## Database name
   database: nextcloud
 
   ## Use a existing secret
   existingSecret:
-    enabled: false
-    # secretName: nameofsecret
+    enabled: true
+    secretName: nextcloud-db
     usernameKey: db-username
     passwordKey: db-password
     # hostKey: db-hostname-or-ip
@@ -402,7 +402,7 @@ mariadb:
     password: changeme
     # Use existing secret (auth.rootPassword, auth.password, and auth.replicationPassword will be ignored).
     # secret must contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
-    existingSecret: "nextcloud-db-secret"
+    existingSecret: nextcloud-db-secret
 
   architecture: standalone
 
