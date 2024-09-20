@@ -44,16 +44,21 @@ spec:
             - name: NEXTCLOUD_DATA_DIR
               value: {{ .Values.nextcloud.dataDir }}
           volumeMounts:
-            - name: {{ .Release.Name }}-data
+            - name: {{ .Release.Name }}-app
               mountPath: /var/www/html
+            - name: {{ .Release.Name }}-data
+              mountPath: /mnt/data/{{ .Release.Name }}-data
           lifecycle:
             postStart:
               exec:
                 command: ["/bin/sh", "-c", "echo \"ServerName localhost\" | tee -a /etc/apache2/apache2.conf"]
       volumes:
-        - name: {{ .Release.Name }}-data
+        - name: {{ .Release.Name }}-app
           persistentVolumeClaim:
             claimName: {{ .Release.Name }}-app-pvc
+        - name: {{ .Release.Name }}-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-data-pvc
 ---
 apiVersion: apps/v1
 kind: StatefulSet
