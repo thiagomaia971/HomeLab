@@ -16,6 +16,7 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+      nodePort: {{ .Values.service.nodePort }}
   selector:
     {{- include "collabora-online.selectorLabels" . | nindent 4 }}
     type: main

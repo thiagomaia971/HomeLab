@@ -134,8 +134,9 @@ securityContext: {}
 #  runAsUser: 1000
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 9980
+  nodePort: 30016
   annotations: {}
 
 deployment:
