@@ -10,7 +10,7 @@ spec:
     - {{ .Values.persistence.accessMode }}
   storageClassName: local-storage #{{ .Values.persistence.className }}
   hostPath:
-    path: /mnt/{{ .Release.Name }}-root
+    path: /mnt/data/{{ .Release.Name }}
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
 ---
