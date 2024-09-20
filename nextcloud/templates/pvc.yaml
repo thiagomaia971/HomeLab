@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-app-pvc
+  namespace: {{ .Release.Name }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.app.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.app.size }}
+  volumeName: {{ .Release.Name }}-app-pv
+  storageClassName: {{ .Values.persistence.app.storageClassName }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-db-pvc
+spec:
+  accessModes:
+    - {{ .Values.persistence.app.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.db.size }}
+  volumeName: {{ .Release.Name }}-db-pv
+  storageClassName: {{ .Values.persistence.db.storageClassName }}

@@ -9,3 +9,15 @@ spec:
       targetPort: 80
   selector:
     app: nextcloud
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mariadb
+spec:
+  type: {{ .Values.service.db.type }}
+  ports:
+    - port: {{ .Values.service.db.port }}
+      targetPort: 3306
+  selector:
+    app: mariadb

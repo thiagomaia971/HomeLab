@@ -15,12 +15,21 @@ service:
     nodePort: 30012
 
 persistence:
+  smb:
+    username:
+    password:
+    volumeHandle:
+    source: 
   app:
     enabled: true
     size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClassName: local-storage
   db:
     enabled: true
     size: 10Gi
+    accessMode: ReadWriteOnce
+    storageClassName: local-storage
 
 nextcloud:
   adminUser: admin

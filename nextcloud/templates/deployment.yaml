@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Release.Name }}
+          image: {{ .Values.image.nextcloud }}
+          ports:
+            - containerPort: 80
+          env:
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: mysql-password
+            - name: MYSQL_DATABASE
+              value: {{ .Values.mariadb.database }}
+            - name: MYSQL_USER
+              value: {{ .Values.mariadb.user }}
+            - name: MYSQL_HOST
+              value: db
+            - name: NEXTCLOUD_ADMIN_USER
+              value: {{ .Values.nextcloud.adminUser }}
+            - name: NEXTCLOUD_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: {{ .Release.Name }}-admin-password
+            - name: NEXTCLOUD_DATA_DIR
+              value: {{ .Values.nextcloud.dataDir }}
+          volumeMounts:
+            - name: {{ .Release.Name }}-data
+              mountPath: /var/www/html
+      volumes:
+        - name: {{ .Release.Name }}-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-pvc
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-db
+  namespace: {{ .Release.Name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-db
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-db
+    spec:
+      containers:
+        - name: {{ .Release.Name }}-db
+          image: {{ .Values.image.mariadb }}
+          args:
+            - --transaction-isolation=READ-COMMITTED
+            - --log-bin=binlog
+            - --binlog-format=ROW
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nextcloud-secret
+                  key: mysql-root-password
+            - name: MYSQL_DATABASE
+              value: {{ .Values.mariadb.database }}
+            - name: MYSQL_USER
+              value: {{ .Values.mariadb.user }}
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: nextcloud-secret
+                  key: mysql-password
+          volumeMounts:
+            - name: {{ .Release.Name }}-db-data
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: {{ .Release.Name }}-db-data
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-db-pvc
