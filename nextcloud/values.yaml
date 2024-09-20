@@ -37,6 +37,10 @@ nextcloud:
   dataDir: /var/www/html/data
 
 mariadb:
+  image:
+    repository: mariadb
+    tag: 10.6
+    pullPolicy: IfNotPresent
   rootPassword: ""
   database: nextcloud
   user: nextcloud

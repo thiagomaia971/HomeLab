@@ -48,11 +48,12 @@ spec:
             claimName: {{ .Release.Name }}-pvc
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ .Release.Name }}-db
   namespace: {{ .Release.Name }}
 spec:
+  serviceName: {{ .Release.Namespace }}-db
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
@@ -64,13 +65,8 @@ spec:
     spec:
       containers:
         - name: {{ .Release.Name }}-db
-          image: {{ .Values.image.mariadb }}
-          args:
-            - --transaction-isolation=READ-COMMITTED
-            - --log-bin=binlog
-            - --binlog-format=ROW
-          ports:
-            - containerPort: 3306
+          image: {{ .Values.mariadb.image.repository }}:{{ .Values.mariadb.image.tag }}
+          imagePullPolicy: {{ .Values.mariadb.image.pullPolicy }}
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
@@ -86,6 +82,8 @@ spec:
                 secretKeyRef:
                   name: nextcloud-secret
                   key: mysql-password
+          ports:
+            - containerPort: 3306
           volumeMounts:
             - name: {{ .Release.Name }}-db-data
               mountPath: /var/lib/mysql
