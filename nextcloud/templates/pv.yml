@@ -27,8 +27,8 @@ spec:
    storageClassName: {{ .Values.persistence.data.className }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
-    - {{ .Values.persistence.dirMode }}
-    - {{ .Values.persistence.fileMode }}
+    - {{ .Values.persistence.smb.dirMode }}
+    - {{ .Values.persistence.smb.fileMode }}
     - uid=1001
     - gid=1001
     - noperm
@@ -68,8 +68,8 @@ spec:
 #    storageClassName: {{ .Values.persistence.db.className }}
 #   persistentVolumeReclaimPolicy: Retain
 #   mountOptions:
-#     - {{ .Values.persistence.db.dirMode }}
-#     - {{ .Values.persistence.db.fileMode }}
+#     - {{ .Values.persistence.smb.dirMode }}
+#     - {{ .Values.persistence.smb.fileMode }}
 #     - uid=1001
 #     - gid=1001
 #     - noperm
