@@ -338,14 +338,10 @@ Create volume mounts for the nextcloud container as well as the cron sidecar con
 - name: nextcloud-main
   mountPath: /var/www/html
   subPath: {{ ternary "html" (printf "%s/html" .Values.nextcloud.persistence.subPath) (empty .Values.nextcloud.persistence.subPath) }}
-{{- if and .Values.persistence.nextcloudData.enabled .Values.persistence.enabled }}
+{{- if .Values.persistence.enabled }}
 - name: nextcloud-data
   mountPath: {{ .Values.nextcloud.datadir }}
   subPath: {{ ternary "data" (printf "%s/data" .Values.persistence.nextcloudData.subPath) (empty .Values.persistence.nextcloudData.subPath) }}
-{{- else }}
-- name: nextcloud-main
-  mountPath: {{ .Values.nextcloud.datadir }}
-  subPath: {{ ternary "data" (printf "%s/data" .Values.persistence.subPath) (empty .Values.persistence.subPath) }}
 {{- end }}
 - name: nextcloud-main
   mountPath: /var/www/html/config
