@@ -390,6 +390,11 @@ mariadb:
   # to satisfy the applications database requirements. if you want to deploy this bitnami mariadb, set this and externalDatabase to true
   # To use an ALREADY DEPLOYED mariadb database, set this to false and configure the externalDatabase parameters
   enabled: true
+  replicaCount: 1
+  image:
+    repository: mariadb
+    tag: latest
+    pullPolicy: IfNotPresent
 
   # see: https://github.com/bitnami/charts/tree/main/bitnami/mariadb#global-parameters
   global:
