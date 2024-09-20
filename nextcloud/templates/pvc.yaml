@@ -15,6 +15,20 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: {{ .Release.Name }}-data-pvc
+  namespace: {{ .Release.Name }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.data.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.data.size }}
+  volumeName: {{ .Release.Name }}-data-pv
+  storageClassName: {{ .Values.persistence.data.storageClassName }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
   name: {{ .Release.Name }}-db-pvc
 spec:
   accessModes:

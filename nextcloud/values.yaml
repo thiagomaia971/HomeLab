@@ -20,11 +20,19 @@ persistence:
     password: nextcloud
     volumeHandle: //<your-smb-server-ip>/<Folder-shared>
     source: //<your-smb-server-ip>/<Folder-shared>
+    storageClassName: nextcloud-smb-storage-class
+    dirMode: "dir_mode=0770"
+    fileMode: "file_mode=0770"
   app:
     enabled: true
     size: 10Gi
     accessMode: ReadWriteOnce
     storageClassName: local-storage
+  data:
+    enabled: true
+    size: 50Gi
+    accessMode: ReadWriteOnce
+    storageClassName: nextcloud-smb-storage-class
   db:
     enabled: true
     size: 10Gi

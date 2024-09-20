@@ -17,6 +17,37 @@ spec:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  name: {{ .Release.Name }}-data-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.data.size }}
+  accessModes:
+    - {{ .Values.persistence.data.accessMode }}
+   storageClassName: {{ .Values.persistence.data.className }}
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - {{ .Values.persistence.data.dirMode }}
+    - {{ .Values.persistence.data.fileMode }}
+    - uid=1001
+    - gid=1001
+    - noperm
+    - mfsymlinks
+    - cache=strict
+    - noserverino  # required to prevent data corruption
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: {{ .Values.persistence.smb.volumeHandle }}/{{ .Release.Name }}/data  # Nome único do volume
+    readOnly: false
+    volumeAttributes:
+      source: {{ .Values.persistence.smb.source }}/{{ .Release.Name }}/data  # Caminho SMB no TrueNAS
+    nodeStageSecretRef:
+      name: {{ .Release.Name }}-smb-secret
+      namespace: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
   name: {{ .Release.Name }}-db-pv
   namespace: {{ .Release.Name }}
 spec:
