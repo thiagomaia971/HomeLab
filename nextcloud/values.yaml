@@ -45,7 +45,7 @@ mariadb:
   database: nextcloud
   user: nextcloud
   password: "nextcloud"
-  host: nextcloud-db.svc.cluster.local
+  host: nextcloud-db.nextcloud.svc.cluster.local
 
 ingress:
   enabled: false
