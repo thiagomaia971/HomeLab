@@ -386,9 +386,6 @@ externalDatabase:
 ## ref: https://github.com/bitnami/charts/tree/main/bitnami/mariadb
 ##
 mariadb:
-  ## Whether to deploy a mariadb server from the bitnami mariab db helm chart
-  # to satisfy the applications database requirements. if you want to deploy this bitnami mariadb, set this and externalDatabase to true
-  # To use an ALREADY DEPLOYED mariadb database, set this to false and configure the externalDatabase parameters
   enabled: true
   replicaCount: 1
   image:
@@ -396,36 +393,13 @@ mariadb:
     tag: latest
     pullPolicy: IfNotPresent
 
-  # see: https://github.com/bitnami/charts/tree/main/bitnami/mariadb#global-parameters
-  global:
-    # overwrites the primary.persistence.storageClass value
-    defaultStorageClass: ""
-
   auth:
     database: nextcloud
     username: nextcloud
     password: changeme
-    # Use existing secret (auth.rootPassword, auth.password, and auth.replicationPassword will be ignored).
-    # secret must contain the keys mariadb-root-password, mariadb-replication-password and mariadb-password
-    existingSecret: nextcloud-db-secret
 
-  architecture: standalone
-
-  ## Enable persistence using Persistent Volume Claims
-  ## ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-  ##
-  primary:
-    persistence:
-      enabled: true
-      # Use an existing Persistent Volume Claim (must be created ahead of time)
-      existingClaim: nextcloud-db-pvc
-      storageClass: nextcloud-storage-class
-      accessMode: ReadWriteOnce
-      size: 8Gi
-    service:
-      type: "NodePort"
-      nodePorts:
-        mysql: 30010
+  service:
+    nodePort: 30010
 
 ##
 ## PostgreSQL chart configuration

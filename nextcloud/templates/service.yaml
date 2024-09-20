@@ -39,3 +39,22 @@ spec:
     app.kubernetes.io/name: {{ include "nextcloud.name" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/component: app
+{{- if not .Values.mariadb.enabled }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-db
+  namespace: {{ .Release.Name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: 3306
+      targetPort: 3306
+      protocol: TCP
+      name: mariadb
+      nodePort: {{ .Values.mariadb.service.nodePort }}
+  selector:
+    app: {{ .Release.Namespace }}-db
+{{- end }}
+
