@@ -24,7 +24,7 @@ spec:
     storage: {{ .Values.persistence.data.size }}
   accessModes:
     - {{ .Values.persistence.data.accessMode }}
-   storageClassName: {{ .Values.persistence.data.storageClassName }}
+  storageClassName: {{ .Values.persistence.data.storageClassName }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
     - {{ .Values.persistence.smb.dirMode }}
