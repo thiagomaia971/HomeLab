@@ -413,8 +413,8 @@ mariadb:
     persistence:
       enabled: true
       # Use an existing Persistent Volume Claim (must be created ahead of time)
-      existingClaim: "{{ .Values.persistence.className }}"
-      storageClass: "{{ .Values.persistence.className }}"
+      existingClaim: nextcloud-storage-class
+      storageClass: nextcloud-storage-class
       accessMode: ReadWriteOnce
       size: 8Gi
 
