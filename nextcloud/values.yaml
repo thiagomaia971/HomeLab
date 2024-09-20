@@ -348,7 +348,7 @@ nginx:
   #    value: ENV_VALUE
 
 internalDatabase:
-  enabled: true
+  enabled: false
   name: nextcloud
 
 ##
@@ -389,7 +389,7 @@ mariadb:
   ## Whether to deploy a mariadb server from the bitnami mariab db helm chart
   # to satisfy the applications database requirements. if you want to deploy this bitnami mariadb, set this and externalDatabase to true
   # To use an ALREADY DEPLOYED mariadb database, set this to false and configure the externalDatabase parameters
-  enabled: false
+  enabled: true
 
   # see: https://github.com/bitnami/charts/tree/main/bitnami/mariadb#global-parameters
   global:
@@ -510,7 +510,7 @@ service:
 ##
 persistence:
   # Nextcloud Data (/var/www/html)
-  enabled: false
+  enabled: true
   annotations: {}
   ## nextcloud data Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
@@ -526,8 +526,11 @@ persistence:
   ## If defined, PVC must be created manually before volume will be bound
   # existingClaim:
 
+  className: owncloud-storage-class
   accessMode: ReadWriteOnce
-  size: 8Gi
+  size: 50Gi
+  dbSize: 8Gi
+  rootSize: 8Gi
 
   ## Use an additional pvc for the data directory rather than a subpath of the default PVC
   ## Useful to store data on a different storageClass (e.g. on slower disks)

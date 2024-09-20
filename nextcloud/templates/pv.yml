@@ -1,0 +1,77 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-root-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.rootSize }}
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  storageClassName: {{ .Values.persistence.className }}
+  hostPath:
+    path: /mnt/data/{{ .Release.Name }}
+  volumeMode: Filesystem
+  persistentVolumeReclaimPolicy: Retain
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-db-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.dbSize }}
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  # storageClassName: {{ .Values.persistence.className }}
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - {{ .Values.persistence.dirMode }}
+    - {{ .Values.persistence.fileMode }}
+    - uid=1001
+    - gid=1001
+    - noperm
+    - mfsymlinks
+    - cache=strict
+    - noserverino  # required to prevent data corruption
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: {{ .Values.smb.volumeHandle }}/mariadb  # Nome único do volume
+    readOnly: false
+    volumeAttributes:
+      source: {{ .Values.mariadb.path }}  # Caminho SMB no TrueNAS
+    nodeStageSecretRef:
+      name: {{ .Release.Name }}-smb-secret
+      namespace: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Release.Name }}-pv
+  namespace: {{ .Release.Name }}
+spec:
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  accessModes:
+    - {{ .Values.persistence.accessMode }}
+  storageClassName: {{ .Values.persistence.className }}
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - {{ .Values.persistence.dirMode }}
+    - {{ .Values.persistence.fileMode }}
+    - uid=1001
+    - gid=1001
+    - noperm
+    - mfsymlinks
+    - cache=strict
+    - noserverino  # required to prevent data corruption
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: {{ .Values.smb.volumeHandle }}  # Nome único do volume
+    readOnly: false
+    volumeAttributes:
+      source: {{ .Values.smb.path }}  # Caminho SMB no TrueNAS
+    nodeStageSecretRef:
+      name: {{ .Release.Name }}-smb-secret
+      namespace: {{ .Release.Name }}
