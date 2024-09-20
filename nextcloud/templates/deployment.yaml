@@ -51,7 +51,7 @@ spec:
             # - name: {{ .Release.Name }}-data
             #   mountPath: /etc/apache2/conf-enabled/servername.conf
             - name: {{ .Release.Name }}-data
-              mountPath: /etc/apache2/apache2.conf
+              mountPath: /etc/apache2/sites-available/000-default.conf
       volumes:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
