@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ .Release.Name }}-root-pvc
+  name: {{ template "nextcloud.fullname" . }}-nextcloud
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
