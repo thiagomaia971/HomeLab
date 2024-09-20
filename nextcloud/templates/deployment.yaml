@@ -48,8 +48,10 @@ spec:
           volumeMounts:
             - name: {{ .Release.Name }}-data
               mountPath: /var/www/html
+            # - name: {{ .Release.Name }}-data
+            #   mountPath: /etc/apache2/conf-enabled/servername.conf
             - name: {{ .Release.Name }}-data
-              mountPath: /etc/apache2/conf-enabled/servername.conf
+              mountPath: /etc/apache2/apache2.conf
       volumes:
         - name: {{ .Release.Name }}-data
           persistentVolumeClaim:
