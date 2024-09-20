@@ -281,7 +281,7 @@ nextcloud:
   extraVolumes:
     - name: nextcloud-data
       persistentVolumeClaim:
-        claimName: {{ .Release.Name }}-pvc
+        claimName: nextcloud-pvc
   extraVolumeMounts:
     - name: nextcloud-data
       mountPath: /mnt/nextcloud-data
