@@ -8,9 +8,9 @@ spec:
     storage: {{ .Values.persistence.rootSize }}
   accessModes:
     - {{ .Values.persistence.accessMode }}
-  storageClassName: {{ .Values.persistence.className }}
+  storageClassName: local-storage #{{ .Values.persistence.className }}
   hostPath:
-    path: /mnt/{{ .Release.Name }}-data
+    path: /mnt/{{ .Release.Name }}-root
   volumeMode: Filesystem
   persistentVolumeReclaimPolicy: Retain
 ---

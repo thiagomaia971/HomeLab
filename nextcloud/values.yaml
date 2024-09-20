@@ -90,7 +90,7 @@ nextcloud:
   update: 0
   # If web server is not binding default port, you can define it
   containerPort: 80
-  datadir: /var/www/html/data
+  datadir: /mnt/nextcloud-data
   persistence:
     subPath:
   # if set, we'll template this list to the NEXTCLOUD_TRUSTED_DOMAINS env var

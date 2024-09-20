@@ -11,7 +11,7 @@ spec:
     requests:
       storage: {{ .Values.persistence.rootSize }}
   volumeName: {{ .Release.Name }}-root-pv
-  storageClassName: {{ .Values.persistence.className }}
+  storageClassName: local-storage #{{ .Values.persistence.className }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
