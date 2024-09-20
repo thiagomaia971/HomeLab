@@ -37,7 +37,7 @@ spec:
     - noserverino  # required to prevent data corruption
   csi:
     driver: smb.csi.k8s.io
-    volumeHandle: {{ .Values.smb.volumeHandle }}/db  # Nome único do volume
+    volumeHandle: {{ .Values.persistence.smb.volumeHandle }}/db  # Nome único do volume
     readOnly: false
     volumeAttributes:
       source: {{ .Values.persistence.smb.path }}/db  # Caminho SMB no TrueNAS
