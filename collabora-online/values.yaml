@@ -27,7 +27,8 @@ collabora:
   # example to add aliasgroups
   # - host: "<protocol>://<host-name>:<port>"
   #   aliases: ["<protocol>://<its-first-alias>:<port>, <protocol>://<its-second-alias>:<port>"]
-  aliasgroups: []
+  aliasgroups: 
+    - host: "http://nextcloud-app.nextcloud.svc.cluster.local"
 
   extra_params: --o:ssl.enable=false
 
