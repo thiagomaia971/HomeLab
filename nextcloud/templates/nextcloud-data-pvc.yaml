@@ -19,7 +19,7 @@ spec:
     - {{ .Values.persistence.accessMode | quote }}
   resources:
     requests:
-      storage: {{ .Values.persistence.dataSize | quote }}
+      storage: {{ .Values.persistence.size | quote }}
   {{- with .Values.persistence.storageClass }}
   {{- if (eq "-" .) }}
   storageClassName: ""
