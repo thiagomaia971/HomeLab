@@ -211,26 +211,26 @@ nextcloud:
 
   # Extra config files created in /var/www/html/config/
   # ref: https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html#multiple-config-php-file
-  configs: {}
+  configs: 
   # For example, to enable image and text file previews:
-  #  previews.config.php: |-
-  #    <?php
-  #    $CONFIG = array (
-  #      'enable_previews' => true,
-  #      'enabledPreviewProviders' => array (
-  #        'OC\Preview\Movie',
-  #        'OC\Preview\PNG',
-  #        'OC\Preview\JPEG',
-  #        'OC\Preview\GIF',
-  #        'OC\Preview\BMP',
-  #        'OC\Preview\XBitmap',
-  #        'OC\Preview\MP3',
-  #        'OC\Preview\MP4',
-  #        'OC\Preview\TXT',
-  #        'OC\Preview\MarkDown',
-  #        'OC\Preview\PDF'
-  #      ),
-  #    );
+   previews.config.php: |-
+     <?php
+     $CONFIG = array (
+       'enable_previews' => true,
+       'enabledPreviewProviders' => array (
+         'OC\Preview\Movie',
+         'OC\Preview\PNG',
+         'OC\Preview\JPEG',
+         'OC\Preview\GIF',
+         'OC\Preview\BMP',
+         'OC\Preview\XBitmap',
+         'OC\Preview\MP3',
+         'OC\Preview\MP4',
+         'OC\Preview\TXT',
+         'OC\Preview\MarkDown',
+         'OC\Preview\PDF'
+       ),
+     );
 
   # Hooks for auto configuration
   # Here you could write small scripts which are placed in `/docker-entrypoint-hooks.d/<hook-name>/helm.sh`
