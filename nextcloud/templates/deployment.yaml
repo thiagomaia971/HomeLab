@@ -338,7 +338,8 @@ spec:
         - name: nextcloud-main
           {{- if .Values.persistence.enabled }}
           persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "nextcloud.fullname" . }}-nextcloud{{- end }}
+            claimName: {{ template "nextcloud.fullname" . }}-nextcloud
+            # claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ template "nextcloud.fullname" . }}-nextcloud{{- end }}
           {{- else }}
           emptyDir: {}
           {{- end }}
