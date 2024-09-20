@@ -292,48 +292,48 @@ spec:
         {{- with .Values.nextcloud.extraInitContainers }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
-        {{- if .Values.mariadb.enabled }}
-        - name: mariadb-isalive
-          image: {{ .Values.mariadb.image.registry | default "docker.io" }}/{{ .Values.mariadb.image.repository }}:{{ .Values.mariadb.image.tag }}
-          {{- with .Values.nextcloud.mariaDbInitContainer.securityContext }}
-          securityContext:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          env:
-            - name: MYSQL_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
-                  key: {{ .Values.externalDatabase.existingSecret.usernameKey }}
-            - name: MYSQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
-                  key: {{ .Values.externalDatabase.existingSecret.passwordKey }}
-          command:
-            - "sh"
-            - "-c"
-            - {{ printf "until mysql --host=%s-mariadb --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --execute=\"SELECT 1;\"; do echo waiting for mysql; sleep 2; done;" .Release.Name }}
-        {{- else if .Values.postgresql.enabled }}
-        - name: postgresql-isready
-          image: {{ .Values.postgresql.image.registry | default "docker.io"  }}/{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}
-          {{- with .Values.nextcloud.postgreSqlInitContainer.securityContext }}
-          securityContext:
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
-                  key: {{ .Values.externalDatabase.existingSecret.usernameKey }}
-            - name: POSTGRES_HOST
-              value: {{ template "postgresql.v1.primary.fullname" .Subcharts.postgresql }}
-          command:
-            - "sh"
-            - "-c"
-            - "until pg_isready -h ${POSTGRES_HOST} -U ${POSTGRES_USER} ; do sleep 2 ; done"
-        {{- end }}{{/* end-if any database-initContainer */}}
+        # {{- if .Values.mariadb.enabled }}
+        # - name: mariadb-isalive
+        #   image: {{ .Values.mariadb.image.registry | default "docker.io" }}/{{ .Values.mariadb.image.repository }}:{{ .Values.mariadb.image.tag }}
+        #   {{- with .Values.nextcloud.mariaDbInitContainer.securityContext }}
+        #   securityContext:
+        #     {{- toYaml . | nindent 12 }}
+        #   {{- end }}
+        #   env:
+        #     - name: MYSQL_USER
+        #       valueFrom:
+        #         secretKeyRef:
+        #           name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
+        #           key: {{ .Values.externalDatabase.existingSecret.usernameKey }}
+        #     - name: MYSQL_PASSWORD
+        #       valueFrom:
+        #         secretKeyRef:
+        #           name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
+        #           key: {{ .Values.externalDatabase.existingSecret.passwordKey }}
+        #   command:
+        #     - "sh"
+        #     - "-c"
+        #     - {{ printf "until mysql --host=%s-mariadb --user=${MYSQL_USER} --password=${MYSQL_PASSWORD} --execute=\"SELECT 1;\"; do echo waiting for mysql; sleep 2; done;" .Release.Name }}
+        # {{- else if .Values.postgresql.enabled }}
+        # - name: postgresql-isready
+        #   image: {{ .Values.postgresql.image.registry | default "docker.io"  }}/{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}
+        #   {{- with .Values.nextcloud.postgreSqlInitContainer.securityContext }}
+        #   securityContext:
+        #     {{- toYaml . | nindent 12 }}
+        #   {{- end }}
+        #   env:
+        #     - name: POSTGRES_USER
+        #       valueFrom:
+        #         secretKeyRef:
+        #           name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
+        #           key: {{ .Values.externalDatabase.existingSecret.usernameKey }}
+        #     - name: POSTGRES_HOST
+        #       value: {{ template "postgresql.v1.primary.fullname" .Subcharts.postgresql }}
+        #   command:
+        #     - "sh"
+        #     - "-c"
+        #     - "until pg_isready -h ${POSTGRES_HOST} -U ${POSTGRES_USER} ; do sleep 2 ; done"
+        # {{- end }}{{/* end-if any database-initContainer */}}
       {{- end }}{{/* end-if any initContainer */}}
       {{- with .Values.affinity }}
       affinity:
