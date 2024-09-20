@@ -42,6 +42,7 @@ nextcloud:
   adminUser: admin
   adminPassword: admin
   dataDir: /mnt/data/nextcloud-data
+  trustedDomains: localhost 127.0.0.1
 
 mariadb:
   image:
