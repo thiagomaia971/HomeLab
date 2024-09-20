@@ -23,7 +23,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  name: {{ .Values.mariadb.auth.existingSecret.secretName }}
                   key: db-password
             - name: MYSQL_DATABASE
               value: {{ .Values.mariadb.auth.database | quote }}
@@ -32,7 +32,7 @@ spec:
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.mariadb.auth.existingSecret }}
+                  name: {{ .Values.mariadb.auth.existingSecret.secretName }}
                   key: db-password
           ports:
             - containerPort: 3306
