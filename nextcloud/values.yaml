@@ -397,6 +397,7 @@ mariadb:
     database: nextcloud
     username: nextcloud
     password: changeme
+    existingSecret: nextcloud-db
 
   service:
     nodePort: 30010
