@@ -347,11 +347,6 @@ spec:
           {{- else }}
           emptyDir: {}
           {{- end }}
-        {{- if and .Values.persistence.nextcloudData.enabled .Values.persistence.enabled }}
-        - name: nextcloud-data
-          persistentVolumeClaim:
-            claimName: {{ if .Values.persistence.nextcloudData.existingClaim }}{{ .Values.persistence.nextcloudData.existingClaim }}{{- else }}{{ template "nextcloud.fullname" . }}-nextcloud-data{{- end }}
-        {{- end }}
         {{- if .Values.nextcloud.configs }}
         - name: nextcloud-config
           configMap:
