@@ -54,34 +54,3 @@ spec:
 #     nodeStageSecretRef:
 #       name: {{ .Release.Name }}-smb-secret
 #       namespace: {{ .Release.Name }}
-# ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: {{ .Release.Name }}-pv
-#   namespace: {{ .Release.Name }}
-# spec:
-#   capacity:
-#     storage: {{ .Values.persistence.app.size }}
-#   accessModes:
-#     - {{ .Values.persistence.owncloud.accessMode }}
-#   storageClassName: {{ .Values.persistence.owncloud.className }}
-#   persistentVolumeReclaimPolicy: Retain
-#   mountOptions:
-#     - {{ .Values.persistence.owncloud.dirMode }}
-#     - {{ .Values.persistence.owncloud.fileMode }}
-#     - uid=1001
-#     - gid=1001
-#     - noperm
-#     - mfsymlinks
-#     - cache=strict
-#     - noserverino  # required to prevent data corruption
-#   csi:
-#     driver: smb.csi.k8s.io
-#     volumeHandle: {{ .Values.smb.volumeHandle }}  # Nome único do volume
-#     readOnly: false
-#     volumeAttributes:
-#       source: {{ .Values.smb.path }}  # Caminho SMB no TrueNAS
-#     nodeStageSecretRef:
-#       name: {{ .Release.Name }}-smb-secret
-#       namespace: {{ .Release.Name }}
