@@ -16,10 +16,10 @@ service:
 
 persistence:
   smb:
-    username:
-    password:
-    volumeHandle:
-    source: 
+    username: nextcloud
+    password: nextcloud
+    volumeHandle: //<your-smb-server-ip>/<Folder-shared>
+    source: //<your-smb-server-ip>/<Folder-shared>
   app:
     enabled: true
     size: 10Gi
