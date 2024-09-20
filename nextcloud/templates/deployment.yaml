@@ -30,6 +30,10 @@ spec:
               value: {{ .Values.mariadb.user }}
             - name: MYSQL_HOST
               value: {{ .Values.mariadb.host }}
+            - name: MYSQL_PORT_NUMBER
+              value: "3306"
+            - name: MARIADB_PORT_NUMBER
+              value: "3306"
             - name: NEXTCLOUD_ADMIN_USER
               value: {{ .Values.nextcloud.adminUser }}
             - name: NEXTCLOUD_ADMIN_PASSWORD
