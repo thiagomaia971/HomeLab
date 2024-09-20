@@ -29,11 +29,11 @@ spec:
   mountOptions:
     - {{ .Values.persistence.dirMode }}
     - {{ .Values.persistence.fileMode }}
-  #   - uid=1001
-  #   - gid=1001
-  #   - noperm
-  #   - mfsymlinks
-  #   - cache=strict
+    - uid=1001
+    - gid=1001
+    - noperm
+    - mfsymlinks
+    - cache=strict
     - noserverino  # required to prevent data corruption
   csi:
     driver: smb.csi.k8s.io
