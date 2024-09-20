@@ -48,10 +48,6 @@ spec:
           volumeMounts:
             - name: {{ .Release.Name }}-data
               mountPath: /var/www/html
-            # - name: {{ .Release.Name }}-data
-            #   mountPath: /etc/apache2/conf-enabled/servername.conf
-            - name: {{ .Release.Name }}-data
-              mountPath: /etc/apache2/sites-available
           lifecycle:
             postStart:
               exec:
