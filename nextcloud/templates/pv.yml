@@ -55,33 +55,23 @@ spec:
     storage: {{ .Values.persistence.db.size }}
   accessModes:
     - {{ .Values.persistence.db.accessMode }}
-  storageClassName: {{ .Values.persistence.db.storageClassName }}
-  hostPath:
-    path: /mnt/data/{{ .Release.Name }}-db
-  volumeMode: Filesystem
+   storageClassName: {{ .Values.persistence.db.className }}
   persistentVolumeReclaimPolicy: Retain
-# spec:
-#   capacity:
-#     storage: {{ .Values.persistence.db.size }}
-#   accessModes:
-#     - {{ .Values.persistence.db.accessMode }}
-#    storageClassName: {{ .Values.persistence.db.className }}
-#   persistentVolumeReclaimPolicy: Retain
-#   mountOptions:
-#     - {{ .Values.persistence.smb.dirMode }}
-#     - {{ .Values.persistence.smb.fileMode }}
-#     - uid=1001
-#     - gid=1001
-#     - noperm
-#     - mfsymlinks
-#     - cache=strict
-#     - noserverino  # required to prevent data corruption
-#   csi:
-#     driver: smb.csi.k8s.io
-#     volumeHandle: {{ .Values.persistence.smb.volumeHandle }}/{{ .Release.Name }}  # Nome único do volume
-#     readOnly: false
-#     volumeAttributes:
-#       source: {{ .Values.persistence.smb.source }}/{{ .Release.Name }}  # Caminho SMB no TrueNAS
-#     nodeStageSecretRef:
-#       name: {{ .Release.Name }}-smb-secret
-#       namespace: {{ .Release.Name }}
+  mountOptions:
+    - {{ .Values.persistence.smb.dirMode }}
+    - {{ .Values.persistence.smb.fileMode }}
+    - uid=1001
+    - gid=1001
+    - noperm
+    - mfsymlinks
+    - cache=strict
+    - noserverino  # required to prevent data corruption
+  csi:
+    driver: smb.csi.k8s.io
+    volumeHandle: {{ .Values.persistence.smb.volumeHandle }}/{{ .Release.Name }}/mariadb  # Nome único do volume
+    readOnly: false
+    volumeAttributes:
+      source: {{ .Values.persistence.smb.source }}/{{ .Release.Name }}/mariadb  # Caminho SMB no TrueNAS
+    nodeStageSecretRef:
+      name: {{ .Release.Name }}-smb-secret
+      namespace: {{ .Release.Name }}
