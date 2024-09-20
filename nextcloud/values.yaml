@@ -41,10 +41,10 @@ mariadb:
     repository: mariadb
     tag: 10.6
     pullPolicy: IfNotPresent
-  rootPassword: ""
+  rootPassword: "nextcloud"
   database: nextcloud
   user: nextcloud
-  password: ""
+  password: "nextcloud"
 
 ingress:
   enabled: false

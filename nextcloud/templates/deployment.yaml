@@ -71,7 +71,7 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-secret
+                  name: {{ .Release.Name }}-secret
                   key: mysql-root-password
             - name: MYSQL_DATABASE
               value: {{ .Values.mariadb.database }}
@@ -80,7 +80,7 @@ spec:
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: nextcloud-secret
+                  name: {{ .Release.Name }}-secret
                   key: mysql-password
           ports:
             - containerPort: 3306
