@@ -73,8 +73,8 @@ Create environment variables used to configure the nextcloud container as well a
 - name: SQLITE_DATABASE
   value: {{ .Values.internalDatabase.name | quote }}
 {{- else if .Values.mariadb.enabled }}
-- name: MYSQL_HOST
-  value: {{ template "mariadb.primary.fullname" .Subcharts.mariadb }}
+# - name: MYSQL_HOST
+#   value: {{ template "mariadb.primary.fullname" .Subcharts.mariadb }}
 - name: MYSQL_DATABASE
   value: {{ .Values.mariadb.auth.database | quote }}
 - name: MYSQL_USER
