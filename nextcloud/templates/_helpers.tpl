@@ -72,21 +72,6 @@ Create environment variables used to configure the nextcloud container as well a
 {{- if .Values.internalDatabase.enabled }}
 - name: SQLITE_DATABASE
   value: {{ .Values.internalDatabase.name | quote }}
-/*{{- else if .Values.mariadb.enabled }}
-- name: MYSQL_HOST
-  value: {{ template "mariadb.primary.fullname" .Subcharts.mariadb }}
-- name: MYSQL_DATABASE
-  value: {{ .Values.mariadb.auth.database | quote }}
-- name: MYSQL_USER
-  valueFrom:
-    secretKeyRef:
-      name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
-      key: {{ .Values.externalDatabase.existingSecret.usernameKey }}
-- name: MYSQL_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: {{ .Values.externalDatabase.existingSecret.secretName | default (printf "%s-db" .Release.Name) }}
-      key: {{ .Values.externalDatabase.existingSecret.passwordKey }}*/
 {{- else if .Values.postgresql.enabled }}
 - name: POSTGRES_HOST
   value: {{ template "postgresql.v1.primary.fullname" .Subcharts.postgresql }}
