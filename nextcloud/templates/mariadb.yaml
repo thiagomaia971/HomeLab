@@ -1,4 +1,4 @@
-{{- if not .Values.mariadb.enabled }}
+{{- if .Values.mariadb.enabled }}
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
