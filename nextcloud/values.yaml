@@ -46,7 +46,7 @@ nextcloud:
 mariadb:
   image:
     repository: mariadb
-    tag: lastest
+    tag: latest
     pullPolicy: IfNotPresent
   rootPassword: "nextcloud"
   database: nextcloud
