@@ -32,7 +32,7 @@ spec:
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ printf "%s-%s" .Release.Name "externaldb" }}
+                  name: {{ .Values.mariadb.auth.existingSecret }}
                   key: db-password
           ports:
             - containerPort: 3306
