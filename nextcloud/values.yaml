@@ -413,7 +413,7 @@ mariadb:
     persistence:
       enabled: true
       # Use an existing Persistent Volume Claim (must be created ahead of time)
-      existingClaim: nextcloud-storage-class
+      existingClaim: nextcloud-db-pvc
       storageClass: nextcloud-storage-class
       accessMode: ReadWriteOnce
       size: 8Gi
