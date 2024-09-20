@@ -526,7 +526,7 @@ persistence:
   ## If defined, PVC must be created manually before volume will be bound
   # existingClaim:
 
-  className: owncloud-storage-class
+  className: nextcloud-storage-class
   accessMode: ReadWriteOnce
   size: 50Gi
   dbSize: 8Gi
