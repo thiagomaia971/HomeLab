@@ -265,7 +265,7 @@ nextcloud:
   extraInitContainers: 
    - name: do-something
      image: busybox
-     command: ['sh', '-c', 'touch /mnt/data/nextcloud && chmod 600 /mnt/data/nextcloud']
+     command: ['sh', '-c', 'mkdir /mnt/ && mkdir /mnt/data && mkdir /mnt/data/nextcloud && touch /mnt/data/nextcloud && chmod 600 /mnt/data/nextcloud']
 
   # Extra sidecar containers.
   extraSidecarContainers: []
