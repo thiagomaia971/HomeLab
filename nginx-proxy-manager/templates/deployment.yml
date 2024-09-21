@@ -37,7 +37,7 @@ spec:
           lifecycle:
             postStart:
               exec:
-                command: ["/bin/sh", "-c", "echo \"Install some stuff\" && apt-get update && apt-get upgrade -y && apt-get install -y --only-upgrade certbot && apt-get install nano && apt-get install -y python3-certbot-dns-cloudflare && pip install --upgrade certbot && pip install cloudflare"]
+                command: ["/bin/sh", "-c", "echo \"Install some stuff\" && apt-get update && apt-get upgrade -y && python3 -m pip install --upgrade pip && apt-get install -y --only-upgrade certbot && apt-get install nano && apt-get install -y python3-certbot-dns-cloudflare && pip install --upgrade certbot && pip install cloudflare"]
       volumes:
         - name: {{ .Release.Name }}-storage
           persistentVolumeClaim:
