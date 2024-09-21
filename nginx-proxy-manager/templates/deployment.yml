@@ -13,21 +13,6 @@ spec:
       labels:
         app: {{ .Release.Name }}
     spec:
-      initContainers:  # Adiciona initContainer para instalar o plugin certbot-dns-cloudflare
-        - name: install-cloudflare-plugin
-          image: "{{ .Values.nginxProxyManager.image }}"  # Usa a mesma imagem do Nginx Proxy Manager
-          command: ["/bin/sh", "-c"]
-          args:
-            - apt-get update && 
-              apt-get upgrade -y &&
-              apt-get install nano &&
-              apt-get install -y python3-certbot-dns-cloudflare &&
-              pip install cloudflare
-          volumeMounts:
-            - name: {{ .Release.Name }}-storage
-              mountPath: /etc/letsencrypt
-            - name: {{ .Release.Name }}-storage
-              mountPath: /data
       containers:
         - name: {{ .Release.Name }}
           image: "{{ .Values.nginxProxyManager.image }}"
@@ -49,6 +34,10 @@ spec:
               mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c", "echo \"Install some stuff\" && apt-get update && apt-get upgrade -y && apt-get install nano && apt-get install -y python3-certbot-dns-cloudflare && pip install cloudflare"]
       volumes:
         - name: {{ .Release.Name }}-storage
           persistentVolumeClaim:
