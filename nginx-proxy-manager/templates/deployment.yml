@@ -27,7 +27,7 @@ spec:
               value: "{{ .Values.nginxProxyManager.env.LETSENCRYPT_DOMAIN }}"
             - name: LETSENCRYPT_EMAIL
               value: "{{ .Values.nginxProxyManager.env.LETSENCRYPT_EMAIL }}"
-            - name: DISABLE_IPV6:
+            - name: DISABLE_IPV6
               value: true
           volumeMounts:
             - name: {{ .Release.Name }}-storage
