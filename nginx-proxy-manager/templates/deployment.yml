@@ -28,7 +28,7 @@ spec:
             - name: LETSENCRYPT_EMAIL
               value: "{{ .Values.nginxProxyManager.env.LETSENCRYPT_EMAIL }}"
             - name: DISABLE_IPV6
-              value: true
+              value: "true"
           volumeMounts:
             - name: {{ .Release.Name }}-storage
               mountPath: /etc/letsencrypt
