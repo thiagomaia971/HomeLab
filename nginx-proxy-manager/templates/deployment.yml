@@ -19,6 +19,8 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - apt-get update && 
+              apt-get upgrade -y &&
+              apt-get install nano &&
               apt-get install -y python3-certbot-dns-cloudflare &&
               pip install cloudflare
           volumeMounts:
