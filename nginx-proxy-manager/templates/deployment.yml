@@ -34,10 +34,10 @@ spec:
               mountPath: /etc/letsencrypt
             - name: {{ .Release.Name }}-storage
               mountPath: /data
-          lifecycle:
-            postStart:
-              exec:
-                command: ["/bin/sh", "-c", "echo \"Install some stuff\" && apt-get update && apt-get upgrade -y && apt-get install nano && apt-get install -y python3-certbot-dns-cloudflare && pip install cloudflare"]
+          # lifecycle:
+          #   postStart:
+          #     exec:
+          #       command: ["/bin/sh", "-c", "echo \"Install some stuff\" && apt-get update && apt-get upgrade -y && apt-get install nano && apt-get install -y python3-certbot-dns-cloudflare && pip install cloudflare"]
       volumes:
         - name: {{ .Release.Name }}-storage
           persistentVolumeClaim:
