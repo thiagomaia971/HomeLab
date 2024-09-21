@@ -1,6 +1,6 @@
 nginxProxyManager:
   replicaCount: 3
-  image: "jc21/nginx-proxy-manager:2.11.3"
+  image: "jc21/nginx-proxy-manager:2.10.4"
   env:
     SSL_ACTIVE: true
     LETSENCRYPT_DOMAIN: tmaia.cloud
