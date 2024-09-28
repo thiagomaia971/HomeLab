@@ -8,14 +8,14 @@ owncloud:
   domain: drive.tmaia.cloud
   username: owncloud
   password: owncloud
-  datadir: /mnt/data/files
+  datadir: /mnt/data/owncloud
   # mariadb:
   #   fullname: ""
 
 smb:
   username:
   password:
-  path: "//<seu-servidor-smb>/<seu-compartilhamento>"
+  path: "//<seu-servidor-smb>/<seu-compartilhamento>/owncloud/"
   volumeHandle:
 
 mariadb:
@@ -23,7 +23,7 @@ mariadb:
   replicaCount: 1
   fullname: owncloud
   labels: {}
-  path: "//<seu-servidor-smb>/<seu-compartilhamento>/mariadb"
+  path: "//<seu-servidor-smb>/<seu-compartilhamento>/owncloud/mariadb"
   image:
     repository: mariadb
     tag: latest
