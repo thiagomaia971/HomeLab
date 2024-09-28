@@ -135,5 +135,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-Unable to create application: application spec for nextcloud is invalid: InvalidSpecError: Unable to generate manifests in nextcloud: rpc error: code = Unknown desc = `helm template . --name-template nextcloud --namespace nextcloud --kube-version 1.28 --set persistence.smb.username=backup-s --set persistence.smb.password=5opAk3XB5mS --set persistence.smb.path=//192.168.18.201/Documentos --set persistence.smb.volumeHandle=//192.168.18.201/Documentos <api versions removed> --include-crds` failed exit status 1: Error: template: nextcloud/templates/pv.yml:40:28: executing "nextcloud/templates/pv.yml" at <.Values.smb.volumeHandle>: nil pointer evaluating interface {}.volumeHandle Use --debug flag to render out invalid YAML
