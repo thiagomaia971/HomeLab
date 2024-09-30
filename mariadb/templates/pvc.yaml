@@ -1,0 +1,14 @@
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-db-pvc
+  namespace: {{ .Release.Name }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.owncloud.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.owncloud.dbSize }}
+  volumeName: {{ .Release.Name }}-db-pv
+  # storageClassName: {{ .Values.persistence.owncloud.className }}

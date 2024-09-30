@@ -1,0 +1,41 @@
+# Default values for owncloud.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+mariadb:
+  enabled: true
+  fullname: mariadb
+  labels: {}
+  path: "//<seu-servidor-smb>/<seu-compartilhamento>/mariadb"
+  image:
+    repository: mariadb
+    tag: latest
+    pullPolicy: IfNotPresent
+  db:
+    name: mariadb
+    user: mariadb
+    password: mariadb
+    
+
+persistence:
+  enabled: true
+  smb:
+    accessMode: ReadWriteOnce
+    className: mariadb-storage-class
+    size: 10Gi
+    dirMode: "dir_mode=0770"
+    fileMode: "file_mode=0770"
+    username:
+    password:
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: NodePort
+  port: 80
+  nodePort: 30007
+  dbNodePort: 30008
