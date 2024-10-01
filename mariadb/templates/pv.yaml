@@ -6,14 +6,14 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   capacity:
-    storage: {{ .Values.persistence.owncloud.dbSize }}
+    storage: {{ .Values.persistence.smb.size }}
   accessModes:
-    - {{ .Values.persistence.owncloud.accessMode }}
-  # storageClassName: {{ .Values.persistence.owncloud.className }}
+    - {{ .Values.persistence.smb.accessMode }}
+  # storageClassName: {{ .Values.persistence.smb.className }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
-    - {{ .Values.persistence.owncloud.dirMode }}
-    - {{ .Values.persistence.owncloud.fileMode }}
+    - {{ .Values.persistence.smb.dirMode }}
+    - {{ .Values.persistence.smb.fileMode }}
     - uid=1001
     - gid=1001
     - noperm
@@ -22,10 +22,10 @@ spec:
     - noserverino  # required to prevent data corruption
   csi:
     driver: smb.csi.k8s.io
-    volumeHandle: {{ .Values.smb.volumeHandle }}/mariadb  # Nome único do volume
+    volumeHandle: {{ .Values.persistence.smb.volumeHandle }}  # Nome único do volume
     readOnly: false
     volumeAttributes:
-      source: {{ .Values.mariadb.path }}  # Caminho SMB no TrueNAS
+      source: {{ .Values.persistence.smb.path }}  # Caminho SMB no TrueNAS
     nodeStageSecretRef:
       name: {{ .Release.Name }}-smb-secret
       namespace: {{ .Release.Name }}

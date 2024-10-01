@@ -8,7 +8,6 @@ mariadb:
   enabled: true
   fullname: mariadb
   labels: {}
-  path: "//<seu-servidor-smb>/<seu-compartilhamento>/mariadb"
   image:
     repository: mariadb
     tag: latest
@@ -25,6 +24,8 @@ persistence:
     accessMode: ReadWriteOnce
     className: mariadb-storage-class
     size: 10Gi
+    path: "//<seu-servidor-smb>/<seu-compartilhamento>/mariadb"
+    volumeHandle: "//<seu-servidor-smb>/<seu-compartilhamento>/mariadb"
     dirMode: "dir_mode=0770"
     fileMode: "file_mode=0770"
     username:
