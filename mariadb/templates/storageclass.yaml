@@ -6,7 +6,7 @@ metadata:
   namespace: {{ .Release.Name }}
 provisioner: smb.csi.k8s.io
 parameters:
-  source: {{ .Values.smb.path }}
+  source: {{ .Values.persistence.smb.path }}
   csi.storage.k8s.io/provisioner-secret-name: {{ .Release.Name }}-smb-secret 
   csi.storage.k8s.io/provisioner-secret-namespace: {{ .Release.Name }} 
   csi.storage.k8s.io/node-stage-secret-name: {{ .Release.Name }}-smb-secret 
