@@ -10,7 +10,7 @@ spec:
     storage: {{ .Values.persistence.smb.size }}
   accessModes:
     - {{ .Values.persistence.smb.accessMode }}
-  # storageClassName: {{ .Values.persistence.smb.className }}
+  storageClassName: {{ .Values.persistence.smb.className }}
   persistentVolumeReclaimPolicy: Retain
   mountOptions:
     - {{ .Values.persistence.smb.dirMode }}
