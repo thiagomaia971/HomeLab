@@ -1,4 +1,5 @@
 
+{{- if .Values.mariadb.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -12,3 +13,4 @@ spec:
       storage: {{ .Values.persistence.smb.size }}
   volumeName: {{ .Release.Name }}-db-pv
   storageClassName: {{ .Values.persistence.smb.className }}
+{{- end }}

@@ -1,4 +1,4 @@
-{{- if not .Values.mariadb.enabled }}
+{{- if .Values.mariadb.enabled }}
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
