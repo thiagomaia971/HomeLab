@@ -6,9 +6,9 @@ metadata:
   namespace: {{ .Release.Name }}
 spec:
   accessModes:
-    - {{ .Values.persistence.owncloud.accessMode }}
+    - {{ .Values.persistence.smb.accessMode }}
   resources:
     requests:
-      storage: {{ .Values.persistence.owncloud.dbSize }}
+      storage: {{ .Values.persistence.smb.size }}
   volumeName: {{ .Release.Name }}-db-pv
-  # storageClassName: {{ .Values.persistence.owncloud.className }}
+  storageClassName: {{ .Values.persistence.smb.className }}
